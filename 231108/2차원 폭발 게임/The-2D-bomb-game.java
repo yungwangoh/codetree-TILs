@@ -31,6 +31,9 @@ public class Main {
             drop(n);
             //print(n);
         }
+        while(bomb(n, m)) {
+            drop(n);
+        }
 
         int cnt = 0;
         for(int i = 0; i < n; i++) {

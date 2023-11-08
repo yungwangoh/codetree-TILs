@@ -23,13 +23,11 @@ public class Main {
         }
 
         for(int i = 0; i < k; i++) {
-            bomb(n, m);
-            drop(n);
+            while(bomb(n, m)) {
+                drop(n);
+            }
 
             rotate(n);
-            drop(n);
-
-            bomb(n, m);
             drop(n);
             //print(n);
         }
@@ -57,8 +55,9 @@ public class Main {
 
         copy(n, temp);
     }
-    static void bomb(int n, int m) {
+    static boolean bomb(int n, int m) {
         
+        boolean flag = false;
         for(int col = 0; col < n; col++) {
             for(int row = 0; row < n; row++) {
                 if(arr[row][col] == 0) continue;
@@ -69,9 +68,12 @@ public class Main {
 
                 if(end - row + 1 >= m) {
                     initZero(row, end, col);
+                    flag = true;
                 }
             }      
         }
+
+        return flag;
     }
     static void copy(int n, int[][] temp) {
 

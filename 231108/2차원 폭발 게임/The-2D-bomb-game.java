@@ -29,10 +29,10 @@ public class Main {
             rotate(n);
             drop(n);
 
+            bomb(n, m);
+            drop(n);
             //print(n);
         }
-
-        bomb(n, m);
 
         int cnt = 0;
         for(int i = 0; i < n; i++) {

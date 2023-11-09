@@ -19,26 +19,10 @@ public class Main {
             }
         }
 
-        for(int row = 0; row < n; row++) {
-            boolean flag = false;
-            for(int col = k; col <= k + m - 1; col++) {
-                if(arr[row][col] == 1) flag = true;
-            }
+        int row = rowCheck(n, m, k);
 
-            if(flag) {
-                continue;
-            } else {
-                for(int col = k; col <= k + m - 1; col++) {
-                    arr[row][col] = 1;
-                }
-
-                if(row == 0) continue;
-                else {
-                    for(int col = k; col <= k + m - 1; col++) {
-                        arr[row - 1][col] = 0;
-                    }
-                }
-            }
+        for(int i = k; i <= k + m - 1; i++) {
+            arr[row][i] = 1;
         }
 
         for(int i = 0; i < n; i++) {
@@ -47,5 +31,20 @@ public class Main {
             }
             System.out.println();
         }
+    }
+    static int rowCheck(int n, int m, int k) {
+        for(int i = 0; i < n - 1; i++) {
+            if(!check(i + 1, m, k)) return i;
+        }
+
+        return n - 1;
+    }
+    static boolean check(int row, int m, int k) {
+
+        for(int j = k; j <= k + m - 1; j++) {
+            if(arr[row][j] == 1) return false; 
+        }
+
+        return true;
     }
 }

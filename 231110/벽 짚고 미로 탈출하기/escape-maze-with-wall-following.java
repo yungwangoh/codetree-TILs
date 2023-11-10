@@ -17,36 +17,29 @@ public class Main {
         y = sc.nextInt() - 1;
 
         arr = new char[n][n];
-        int max = 0;
+        int max = n * n;
         for(int i = 0; i < n; i++) {
             String s = sc.next();
             for(int j = 0; j < n; j++) {
                 arr[i][j] = s.charAt(j);
-
-                if(arr[i][j] == '.') max++;
             }
         }
 
         int cnt = 0;
         int dir = 0;
         boolean flag = false;
-        boolean flag2 = false;
-        while(true) {
+        while(max-- > 0) {
             if(isRange(x, y, n)) {
                 flag = true;
                 break;
             }
-            if(check(dir, '#', n) && check(dir + 1, '#', n)) dir = (dir + 3) % 4;
-            else if(check((dir + 2) % 4, '@', n) && check((dir + 1) % 4, '.', n)) dir = (dir + 1) % 4;
-            else if(check((dir + 2) % 4, '@', n) && check((dir + 1) % 4, '@', n)) {
-                System.out.println(-1);
-                System.exit(0);
-            }
+            if(check(dir, '#', n) && check((dir + 1) % 4, '#', n)) dir = (dir + 3) % 4;
+            else if(check((dir + 2) % 4, '.', n) && check((dir + 1) % 4, '.', n)) dir = (dir + 1) % 4;
 
             move(dir);
             cnt++;
 
-            //System.out.println(x + " " + y);
+           // System.out.println(x + " " + y);
         }
 
         if(flag) {
@@ -70,7 +63,7 @@ public class Main {
         return false;
     }
     static void move(int dir) {
-        arr[x][y] = '@';
+        if(arr[x][y] == '#') return;
         x += dx[dir];
         y += dy[dir];
     }

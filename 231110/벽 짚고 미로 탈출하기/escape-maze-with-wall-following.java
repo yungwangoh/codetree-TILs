@@ -29,9 +29,12 @@ public class Main {
 
         int cnt = 0;
         int dir = 0;
+        boolean flag = false;
         while(max-- > 0) {
-            if(isRange(x, y, n)) break;
-
+            if(isRange(x, y, n)) {
+                flag = true;
+                break;
+            }
             if(check(dir, '#', n) && check(dir + 1, '#', n)) dir = (dir + 3) % 4;
             else if(check((dir + 2) % 4, '@', n) && check((dir + 1) % 4, '.', n)) dir = (dir + 1) % 4;
 
@@ -41,7 +44,7 @@ public class Main {
             //System.out.println(x + " " + y);
         }
 
-        if(cnt >= max) {
+        if(flag) {
             System.out.println(-1);
         } else {
             System.out.println(cnt);

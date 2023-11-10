@@ -30,13 +30,18 @@ public class Main {
         int cnt = 0;
         int dir = 0;
         boolean flag = false;
-        while(max-- > 0) {
+        boolean flag2 = false;
+        while(true) {
             if(isRange(x, y, n)) {
                 flag = true;
                 break;
             }
             if(check(dir, '#', n) && check(dir + 1, '#', n)) dir = (dir + 3) % 4;
             else if(check((dir + 2) % 4, '@', n) && check((dir + 1) % 4, '.', n)) dir = (dir + 1) % 4;
+            else if(check((dir + 2) % 4, '@', n) && check((dir + 1) % 4, '@', n)) {
+                System.out.println(-1);
+                System.exit(0);
+            }
 
             move(dir);
             cnt++;
@@ -45,9 +50,9 @@ public class Main {
         }
 
         if(flag) {
-            System.out.println(-1);
-        } else {
             System.out.println(cnt);
+        } else {
+            System.out.println(-1);
         }
     }
     static boolean isRange(int x, int y, int n) {

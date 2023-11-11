@@ -38,8 +38,6 @@ public class Main {
             }
         }
 
-        //print(n);
-
         int sum = 0;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
@@ -61,16 +59,6 @@ public class Main {
 
         return list;
     }
-    static void print(int n) {
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    } 
     static void bomb(int x, int y, int t, int n) {
 
         int scale = calculate(t);

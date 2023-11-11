@@ -37,28 +37,64 @@ public class Main {
 
             if(ch == 'L') {
                 dir = 0;
+                int nx = r + ddx[dir];
+                int ny = c + ddy[dir];
+
+                if(isRange(nx, ny)) continue;
+
                 LRrotate(dir);
+
+                arr[nx][ny] = dice[2][1];
+
+                r += ddx[dir];
+                c += ddy[dir];
+
             } else if(ch == 'R') {
                 dir = 1;
+
+                int nx = r + ddx[dir];
+                int ny = c + ddy[dir];
+
+                if(isRange(nx, ny)) continue;
+
                 LRrotate(dir);
+
+                arr[nx][ny] = dice[2][1];
+
+                r += ddx[dir];
+                c += ddy[dir];
             } else if(ch == 'D') {
                 dir = 2;
+
+                int nx = r + ddx[dir];
+                int ny = c + ddy[dir];
+
+                if(isRange(nx, ny)) continue;
+
                 UDrotate(dir);
+
+                arr[nx][ny] = dice[2][1];
+
+                r += ddx[dir];
+                c += ddy[dir];
             } else {
                 dir = 3;
+
+                int nx = r + ddx[dir];
+                int ny = c + ddy[dir];
+
+                if(isRange(nx, ny)) continue;
+
                 UDrotate(dir);
+
+                arr[nx][ny] = dice[2][1];
+
+                r += ddx[dir];
+                c += ddy[dir];
             }
-
-            int nx = r + ddx[dir];
-            int ny = c + ddy[dir];
-
-            if(isRange(nx, ny)) continue;
-
-            arr[nx][ny] = dice[2][1];
-
-            r += ddx[dir];
-            c += ddy[dir];
         }     
+
+        //print();
 
         int sum = 0;
         for(int i = 0; i < n; i++) {
@@ -130,9 +166,9 @@ public class Main {
         }
     }
     static void print() {
-        for(int i = 0; i < 4; i++) {
-                for(int j = 0; j < 3; j++) {
-                    System.out.print(dice[i][j] + " ");
+        for(int i = 0; i < n; i++) {
+                for(int j = 0; j < n; j++) {
+                    System.out.print(arr[i][j] + " ");
                 }
                 System.out.println();
             } 

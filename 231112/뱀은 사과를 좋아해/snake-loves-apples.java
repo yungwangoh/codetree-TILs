@@ -1,6 +1,15 @@
 import java.io.*;
 import java.util.*;
 
+class Pair {
+    int x;
+    int y;
+
+    public Pair(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 public class Main {
 
     static final int APPLE = 100;
@@ -41,7 +50,7 @@ public class Main {
 
         int cnt = move(0, 0, k, n);
 
-        print(n);
+        //print(n);
         System.out.println(cnt);
     }
     static int move(int x, int y, int K, int n) {
@@ -53,43 +62,52 @@ public class Main {
             int pp = p[i];
 
             for(int j = 0; j < pp; j++) {
-                int nx = x + dx[dir];
-                int ny = y + dy[dir];
+                Pair p = search(x, y, n);
 
-                cnt++;
-                if(isRange(nx, ny, n) || visit[nx][ny]) {
-                    return cnt;
-                }
+                //if(isRange(x, y, n)) return cnt;
 
+                if(p.x == 0 && p.y == 0) {
+                    int nx = x + dx[dir];
+                    int ny = y + dy[dir];
 
-                visit[nx][ny] = true;
-                visit[x][y] = false;
+                    cnt++;
+                    if(isRange(nx, ny, n)) return cnt;
 
-                x += dx[dir];
-                y += dy[dir];
+                    visit[nx][ny] = true;
+                    visit[x][y] = false;
 
-                for(int k = 0; k < 4; k++) {
-                    int rx = x + dx[k];
-                    int ry = y + dy[k];
+                    x += dx[dir];
+                    y += dy[dir];
 
-                    if(isRange(rx, ny, n) || visit[rx][ny]) continue;
+                } else {
 
-                    if(search(rx, ny)) {
-                        cnt++;
-                        visit[rx][ny] = true;
+                    cnt++;
+                    if(visit[p.x][p.y] || isRange(p.x, p.y, n)) return cnt;
 
-                        x += dx[k];
-                        y += dy[k];
-                    }
+                    visit[p.x][p.y] = true;
+
+                    x = p.x;
+                    y = p.y;
                 }
             }
         }
 
         return cnt;
     }
-    static boolean search(int x, int y) {
-        if(arr[x][y] == APPLE) return true;
-        return false;
+    static Pair search(int x, int y, int n) {
+        
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if(isRange(nx, ny, n) || visit[nx][ny]) continue;
+
+            if(arr[nx][ny] == APPLE) {
+                return new Pair(nx, ny);
+            }
+        }
+
+        return new Pair(0, 0);
     }
     static int dirMapper(char dis) {
         if(dis == 'R') {
@@ -109,7 +127,7 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                System.out.print(arr[i][j] + " ");
+                System.out.print(visit[i][j] + " ");
             }
             System.out.println();
         }

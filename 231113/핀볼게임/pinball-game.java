@@ -36,11 +36,13 @@ public class Main {
             max = Math.max(Math.max(cntD, cntR), Math.max(cntL, cntU));
         }
 
+        //System.out.println(move(4, 0, dirMapper('R')));
+
         System.out.println(max);
     }
     static int move(int x, int y, int dir) {
 
-        int cnt = 1;
+        int cnt = 0;
 
         while(true) {
             cnt++;
@@ -48,15 +50,16 @@ public class Main {
             int nx = x + dx[dir];
             int ny = y + dy[dir];
 
-            //System.out.println(nx + " " + ny);
-            if(isRange(nx, ny)) {
+            //System.out.println(x + " " + y);
+
+            if(isRange(x, y)) {
                 break;
             }
 
+            dir = vectorChange(x, y, dir);
+
             x += dx[dir];
             y += dy[dir];
-
-            dir = vectorChange(x, y, dir);
         }
 
         return cnt;

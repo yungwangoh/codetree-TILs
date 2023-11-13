@@ -17,8 +17,8 @@ public class Main {
     static int[] x;
     static int[] y;
     static boolean[][] arr;
-    static int[] dy = {1, 0, -1, 0};
-    static int[] dx = {0, -1, 0, 1};
+    static int[] dx = {1, -1, 0, 0};
+    static int[] dy = {0, 0, 1, -1};
     static Deque<Pair> dq = new LinkedList<>();
     static int cnt = 0;
     static int n = 0;
@@ -48,7 +48,7 @@ public class Main {
             p[i] = sc.nextInt();
         }
 
-        dq.add(new Pair(0, 0));
+        dq.addFirst(new Pair(0, 0));
 
         for(int i = 0; i < k; i++) {
             int dir = dirMapper(d[i]);
@@ -73,7 +73,7 @@ public class Main {
 
         if(isTwisted(newHead)) return false; 
 
-        dq.add(newHead);
+        dq.addFirst(newHead);
 
         return true;
     }
@@ -106,7 +106,7 @@ public class Main {
             int nx = head.x + dx[dir];
             int ny = head.y + dy[dir];
 
-            if(isRange(nx, ny)) return false;
+            if(isRange(nx, ny) == false) return false;
 
             if(moveSnake(nx, ny) == false) return false;
         }
@@ -115,16 +115,16 @@ public class Main {
     }
     static int dirMapper(char dis) {
         if(dis == 'R') {
-            return 0;
+            return 2;
         } else if(dis == 'U') {
             return 1;
         } else if(dis == 'L') {
-            return 2;
-        } else {
             return 3;
+        } else {
+            return 0;
         }
     }
     static boolean isRange(int x, int y) {
-        return x < 0 || y < 0 || x >= n || y >= n;
+        return x >= 0 && y >= 0 && x < n && y < n;
     }
 }

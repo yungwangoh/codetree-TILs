@@ -47,14 +47,14 @@ public class Main {
         while(true) {
             cnt++;
 
+            if(isRange(x, y)) {
+                break;
+            }
+
             int nx = x + dx[dir];
             int ny = y + dy[dir];
 
             //System.out.println(x + " " + y);
-
-            if(isRange(x, y)) {
-                break;
-            }
 
             dir = vectorChange(x, y, dir);
 

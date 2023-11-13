@@ -21,48 +21,51 @@ public class Main {
             }
         }
 
-        int max = Integer.MIN_VALUE;
+        int maxD = Integer.MIN_VALUE;
+        int maxR = Integer.MIN_VALUE;
+        int maxL = Integer.MIN_VALUE;
+        int maxU = Integer.MIN_VALUE;
         for(int i = 0; i < n; i++) {
             int dirD = dirMapper('D');
             int dirL = dirMapper('L');
             int dirR = dirMapper('R');
             int dirU = dirMapper('U');
 
-            int cntD = move(0, i, dirD);
-            int cntR = move(i, 0, dirR);
-            int cntL = move(i, n - 1, dirL);
-            int cntU = move(n - 1, i, dirU);
-
-            max = Math.max(Math.max(cntD, cntR), Math.max(cntL, cntU));
+            maxD = Math.max(maxD, move(-1, i, dirD));
+            maxR = Math.max(maxR, move(i, -1, dirR));
+            maxL = Math.max(maxL, move(i, n, dirL));
+            maxU = Math.max(maxU, move(n, i, dirU));
         }
 
-        //System.out.println(move(4, 0, dirMapper('R')));
+        //System.out.println(move(-1, 1, dirMapper('D')));
 
+        int max = Math.max(Math.max(maxD, maxR), Math.max(maxL, maxU));
         System.out.println(max);
     }
     static int move(int x, int y, int dir) {
 
         int cnt = 0;
 
-        while(true) {
-            cnt++;
-
-            if(isRange(x, y)) {
-                break;
-            }
+        while(true){
 
             int nx = x + dx[dir];
             int ny = y + dy[dir];
 
-            //System.out.println(x + " " + y);
+            //System.out.println(nx + " " + ny);
 
-            dir = vectorChange(x, y, dir);
+            if(isRange(nx, ny)) {
+                break;
+            };
 
             x += dx[dir];
             y += dy[dir];
+
+            dir = vectorChange(x, y, dir);
+
+            cnt++;
         }
 
-        return cnt;
+        return cnt + 1;
     }
     static int vectorChange(int x, int y, int dir) {
 

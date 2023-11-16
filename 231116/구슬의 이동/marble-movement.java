@@ -53,6 +53,8 @@ public class Main {
             list.add(marble);
         }
 
+        Collections.sort(list);
+
         for(int i = 0; i < t; i++) {
             moveAll();
 
@@ -101,11 +103,6 @@ public class Main {
     }
     static void remove() {
         List<Marble> temp = new ArrayList<>();
-        List<Marble>[][] duplicatedTemp = new List[n][n];
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) duplicatedTemp[i][j] = new ArrayList<>();
-        }
 
         for(int i = 0; i < list.size(); i++) {
             int x = list.get(i).x;
@@ -114,67 +111,15 @@ public class Main {
             arr[x][y]++;
         }
 
-            // for(int j = 0; j < n; j++) {
-            //     for(int k = 0; k < n; k++) {
-            //         System.out.print(arr[j][k] + " ");
-            //     }
-            //     System.out.println();
-            // }
-
-        for(int i = 0; i < list.size(); i++) {
-            Marble m = list.get(i);
-            duplicatedTemp[m.x][m.y].add(m);
-        }
-
-        for(int i = 0; i < list.size(); i++) {
-            int x = list.get(i).x;
-            int y = list.get(i).y;
-
-            arr[x][y]--;
-        }
-
-
-        List<Marble> duplicatedList = new ArrayList<>(duplicatedControl(duplicatedTemp));
-
-        list = duplicatedList;
-    }
-    static List<Marble> duplicatedControl(List<Marble>[][] duplicate) {
-        
-        List<Marble>[][] duplicatedMarble = new List[n][n];
-        List<Marble> list = new ArrayList<>();
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                duplicatedMarble[i][j] = new ArrayList<>(duplicate[i][j]);
+        for(int i = 0; i < list.size() - k; i++) {
+            if(duplicatedMarble(i)) {
+                list.remove(i);
             }
         }
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                if(duplicatedMarble[i][j].size() == 0) continue;
+        arr = new int[n][n];
 
-                Collections.sort(duplicatedMarble[i][j]);
-
-                //System.out.println(duplicatedMarble[i][j].size());
-
-                // for(Marble m : duplicatedMarble[i][j]) 
-                //     System.out.println(m.x + " " + m.y + " " + m.d + " " + m.v);
-
-                int size = duplicatedMarble[i][j].size() - k;
-                for(int l = 0; l < size; l++) {
-                    duplicatedMarble[i][j].remove(l);
-                }
-
-                for(int l = 0; l < duplicatedMarble[i][j].size(); l++) {
-                    Marble addMarble = duplicatedMarble[i][j].get(l);
-                    list.add(addMarble);
-                }
-            }
-        }
-
-       // System.out.println("list -> " + list.size());
-
-        return list;
+        //list = temp;
     }
     static int dirMapper(char ch) {
         if(ch == 'D') {

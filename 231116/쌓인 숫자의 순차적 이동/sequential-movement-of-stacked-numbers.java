@@ -88,9 +88,7 @@ public class Main {
 
             List<Integer> subList = new ArrayList<>(list[x][y].subList(idx, size));
 
-            for (Integer element : subList) {
-                list[rx][ry].add(element);
-            }
+            list[rx][ry].addAll(subList);
 
             list[x][y].removeAll(subList);
         }

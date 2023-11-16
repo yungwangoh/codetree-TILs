@@ -138,9 +138,16 @@ public class Main {
 
         list = duplicatedList;
     }
-    static List<Marble> duplicatedControl(List<Marble>[][] duplicatedMarble) {
+    static List<Marble> duplicatedControl(List<Marble>[][] duplicate) {
         
+        List<Marble>[][] duplicatedMarble = new List[n][n];
         List<Marble> list = new ArrayList<>();
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                duplicatedMarble[i][j] = new ArrayList<>(duplicate[i][j]);
+            }
+        }
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
@@ -149,9 +156,13 @@ public class Main {
                 Collections.sort(duplicatedMarble[i][j]);
 
                 //System.out.println(duplicatedMarble[i][j].size());
-                for(int l = 0; l < duplicatedMarble[i][j].size() - k; l++) {
-                    Marble removeMarble = duplicatedMarble[i][j].get(l);
-                    duplicatedMarble[i][j].remove(removeMarble);
+
+                // for(Marble m : duplicatedMarble[i][j]) 
+                //     System.out.println(m.x + " " + m.y + " " + m.d + " " + m.v);
+
+                int size = duplicatedMarble[i][j].size() - k;
+                for(int l = 0; l < size; l++) {
+                    duplicatedMarble[i][j].remove(l);
                 }
 
                 for(int l = 0; l < duplicatedMarble[i][j].size(); l++) {
@@ -161,7 +172,7 @@ public class Main {
             }
         }
 
-        //System.out.println("list -> " + list.size());
+       // System.out.println("list -> " + list.size());
 
         return list;
     }

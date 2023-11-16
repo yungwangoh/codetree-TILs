@@ -62,17 +62,6 @@ public class Main {
             }
         }
     }
-    static void print() {
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                for(int k = 0; k < list[i][j].size(); k++) {
-                    System.out.print(list[i][j].get(k) + " ");
-                }
-                System.out.println();
-            }
-        }
-        System.out.println();
-    }
     static void move(int x, int y, int idx) {
 
         int max = 0;

@@ -6,16 +6,21 @@ class Marble implements Comparable<Marble> {
     int y;
     int d;
     int v;
+    int num;
 
-    public Marble(int x, int y, int d, int v) {
+    public Marble(int x, int y, int d, int v, int num) {
         this.x = x;
         this.y = y;
         this.d = d;
         this.v = v;
+        this.num = num;
     }
 
     @Override
     public int compareTo(Marble marble) {
+        if(v == marble.v) {
+            return num - marble.num;
+        }
         return v - marble.v;
     }
 }
@@ -43,7 +48,7 @@ public class Main {
             int d = dirMapper(sc.next().charAt(0));
             int v = sc.nextInt();
 
-            Marble marble = new Marble(r, c, d, v);
+            Marble marble = new Marble(r, c, d, v, i);
 
             list.add(marble);
         }
@@ -61,12 +66,16 @@ public class Main {
         int y = marble.y;
         int d = marble.d;
         int v = marble.v;
+        int num = marble.num;
 
         int nx = x + dx[d];
         int ny = y + dy[d];
 
-        if(isRange(nx, ny)) return new Marble(x, y, dirChange(d), v);
-        else return new Marble(nx, ny, d, v);
+        if(isRange(nx, ny)) return new Marble(nx, ny, d, v, num);
+        else {
+            int dir = dirChange(d);
+            return new Marble(x + dx[dir], y + dy[dir], dir, v, num);
+        }
     }
     static void moveAll() {
 
@@ -76,9 +85,10 @@ public class Main {
             int v = marble.v;
 
             for(int j = 0; j < v; j++) {
-                Marble newMarble = move(marble);
-                list.set(i, newMarble);
+                marble = move(marble);
             }
+            
+            list.set(i, marble);
         }
     }
     static boolean duplicatedMarble(int idx) {
@@ -104,13 +114,16 @@ public class Main {
             arr[x][y]++;
         }
 
+            // for(int j = 0; j < n; j++) {
+            //     for(int k = 0; k < n; k++) {
+            //         System.out.print(arr[j][k] + " ");
+            //     }
+            //     System.out.println();
+            // }
+
         for(int i = 0; i < list.size(); i++) {
-            if(!duplicatedMarble(i)) {
-                temp.add(list.get(i));
-            } else {
-                Marble m = list.get(i);
-                duplicatedTemp[m.x][m.y].add(m);
-            }
+            Marble m = list.get(i);
+            duplicatedTemp[m.x][m.y].add(m);
         }
 
         for(int i = 0; i < list.size(); i++) {
@@ -123,9 +136,7 @@ public class Main {
 
         List<Marble> duplicatedList = new ArrayList<>(duplicatedControl(duplicatedTemp));
 
-        temp.addAll(duplicatedList);
-
-        list = temp;
+        list = duplicatedList;
     }
     static List<Marble> duplicatedControl(List<Marble>[][] duplicatedMarble) {
         
@@ -137,7 +148,8 @@ public class Main {
 
                 Collections.sort(duplicatedMarble[i][j]);
 
-                for(int l = 0; l < k; l++) {
+                //System.out.println(duplicatedMarble[i][j].size());
+                for(int l = 0; l < duplicatedMarble[i][j].size() - k; l++) {
                     Marble removeMarble = duplicatedMarble[i][j].get(l);
                     duplicatedMarble[i][j].remove(removeMarble);
                 }
@@ -149,7 +161,7 @@ public class Main {
             }
         }
 
-        System.out.println("list -> " + list.size());
+        //System.out.println("list -> " + list.size());
 
         return list;
     }
@@ -170,6 +182,6 @@ public class Main {
         return dir ^ 1;
     }   
     static boolean isRange(int x, int y) {
-        return x < 0 || y < 0 || x >= n || y >= n;
+        return x >= 0 && y >= 0 && x < n && y < n;
     }
 }

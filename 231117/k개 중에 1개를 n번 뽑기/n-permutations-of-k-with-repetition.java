@@ -11,11 +11,11 @@ public class Main {
         int K = sc.nextInt();
         int N = sc.nextInt();
 
-        combi(1, K, N);
+        combi(0, K, N);
     }
     static void combi(int idx, int k, int n) {
 
-        if(idx == n + 1) {
+        if(idx == n) {
             print();
             return;
         }

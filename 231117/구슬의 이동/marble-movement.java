@@ -12,9 +12,9 @@ class Tuple implements Comparable<Tuple> {
 
     @Override
     public int compareTo(Tuple t) {
-        if(x != t.x) return t.x - x;
-        if(y != t.y) return t.y - y;
-        return t.z - z;
+        if(x != t.x) return x - t.x;
+        if(y != t.y) return y - t.y;
+        return z - t.z;
     }
 }
 public class Main {
@@ -46,7 +46,7 @@ public class Main {
             int d = dirMapper(sc.next().charAt(0));
             int v = sc.nextInt();
 
-            Tuple tuple = new Tuple(v, i + 1, d);
+            Tuple tuple = new Tuple(-v, -(i + 1), d);
 
             grid[r][c].add(tuple);
         }
@@ -110,13 +110,13 @@ public class Main {
 
                     int nx, ny, nDir;
 
-                    Tuple tuple = move(i, j, v, d);
+                    Tuple tuple = move(i, j, -v, d);
 
                     nx = tuple.x;
                     ny = tuple.y;
                     nDir = tuple.z;
 
-                    nextGrid[nx][ny].add(new Tuple(v, n, d));
+                    nextGrid[nx][ny].add(new Tuple(v, n, nDir));
                 }
             }
         }

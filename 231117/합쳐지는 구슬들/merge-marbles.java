@@ -1,156 +1,154 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
-class Marble implements Comparable<Marble> {
-    int x, y, d, w, num;
-
-    public Marble(int x, int y, int d, int w, int num) {
+class Tuple {
+    int x, y, z;
+    public Tuple(int x, int y, int z) {
         this.x = x;
         this.y = y;
-        this.d = d;
-        this.w = w;
-        this.num = num;
-    }
-
-    @Override
-    public int compareTo(Marble m) {
-        return m.num - num;
+        this.z = z;
     }
 }
+
 public class Main {
+    public static final Tuple EMPTY = new Tuple(0, 0, 0);
+    public static final int DIR_NUM = 4;
+    public static final int ASCII_NUM = 128;
+    public static final int MAX_N = 50;
+    
+    public static int n, m, t;
+    public static Tuple[][] grid = new Tuple[MAX_N][MAX_N];
+    public static Tuple[][] nextGrid = new Tuple[MAX_N][MAX_N];
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
+    }
+    
+    public static Tuple NextPos(int x, int y, int moveDir) {
+        int[] dx = new int[]{-1, 0, 0, 1};
+        int[] dy = new int[]{0, 1, -1, 0};
+        
+        int nx = x + dx[moveDir], ny = y + dy[moveDir];
+        if(!inRange(nx, ny))
+            moveDir = 3 - moveDir;
+        else {
+            x = nx; y = ny;
+        }
+        
+        return new Tuple(x, y, moveDir);
+    }
+    
+    // (x, y) 위치에 새로운 구슬이 들어왔을 때 갱신을 진행합니다.
+    public static void update(int x, int y, Tuple newMarble) {
+        // 기존 구슬 정보입니다.
+        int num = nextGrid[x][y].x;
+        int weight = nextGrid[x][y].y;
+        int moveDir = nextGrid[x][y].z;
+        
+        // 새롭게 들어온 구슬 정보입니다.
+        int newNum = newMarble.x;
+        int newWeight = newMarble.y;
+        int newDir = newMarble.z;
+        
+        // 새로 들어온 구슬이 더 우선순위가 높다면
+        // 번호와 방향은 새로운 구슬을 따르게 됩니다.
+        if(newNum > num) 
+            nextGrid[x][y] = new Tuple(newNum, weight + newWeight, newDir);
+        // 기존 구슬의 우선순위가 더 높다면
+        // 무게만 더해집니다.
+        else
+            nextGrid[x][y] = new Tuple(num, weight + newWeight, moveDir);
+    }
+    
+    public static void move(int x, int y) {
+        int num = grid[x][y].x;
+        int weight = grid[x][y].y;
+        int moveDir = grid[x][y].z;
+        
+        // Step1. 현재 구슬의 다음 위치와 방향을 구합니다.
+        Tuple nextPos = NextPos(x, y, moveDir);
+        int nx = nextPos.x;
+        int ny = nextPos.y;
+        int nextDir = nextPos.z;
+        
+        // Step2. 구슬을 옮겨줍니다.
+        update(nx, ny, new Tuple(num, weight, nextDir));
+    }
+    
+    public static void simulate() {
+        // Step1. nextGrid를 초기화합니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                nextGrid[i][j] = EMPTY;
+        
+        // Step2. 각 구슬들을 한 칸씩 움직여줍니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                if(grid[i][j].x != EMPTY.x || grid[i][j].y != EMPTY.y || grid[i][j].z != EMPTY.z)
+                    move(i, j);
+    
+        // Step3. nextGrid 값을 grid로 옮겨줍니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                grid[i][j] = nextGrid[i][j];
+    }
+    
+    public static int getMarbleNum() {
+        int cnt = 0;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                if(grid[i][j] != EMPTY)
+                    cnt++;
+        
+        return cnt;
+    }
+    
+    public static int getMaxWeight() {
+        int maxWeight = 0;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                if(grid[i][j] != EMPTY) {
+                    int weight = grid[i][j].y;
+                    maxWeight = Math.max(maxWeight, weight);
+                }
+    
+        return maxWeight;
+    }
 
-    static int n, m, t;
-    static final int MAX_N = 51;
-    static ArrayList<Marble>[][] grid = new ArrayList[MAX_N][MAX_N];
-    static ArrayList<Marble>[][] nextGrid = new ArrayList[MAX_N][MAX_N];
     public static void main(String[] args) {
-        // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);
-
         n = sc.nextInt();
         m = sc.nextInt();
         t = sc.nextInt();
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) 
-                grid[i][j] = new ArrayList<>();
-        }
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) 
-                nextGrid[i][j] = new ArrayList<>();
-        }
-
-        for(int i = 0; i < m; i++) {
-            int r = sc.nextInt() - 1;
-            int c = sc.nextInt() - 1;
-            int dir = dirMapper(sc.next().charAt(0));
-            int w = sc.nextInt();
-
-            Marble m = new Marble(r, c, dir, w, i + 1);
-
-            grid[r][c].add(m);
-        }
-
-        while(t-- > 0) {
-            simulate();
-        }
-
-        int sum = 0;
-        int max = 0;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-
-                for(int k = 0; k < (int) grid[i][j].size(); k++) {
-                    max = Math.max(max, grid[i][j].get(k).w);
-                }
-                sum += grid[i][j].size();
-            }
-        }
-
-        System.out.println(sum + " " + max);
-    }
-    static void simulate() {
-
-        for(int i = 0; i < n; i++) {
-            for(int j =0 ; j < n; j++) {
-                nextGrid[i][j] = new ArrayList<>();
-            }
-        }
-
-        moveAll();
-
-        addMarble();
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                grid[i][j] = (ArrayList<Marble>) nextGrid[i][j].clone();
-            }
-        }
-    }
-    static Marble move(Marble marble) {
-        int[] dx = {1, -1, 0, 0};
-        int[] dy = {0, 0, -1, 1};
-
-        int x = marble.x;
-        int y = marble.y;
-        int dir = marble.d;
-        int w = marble.w;
-        int num = marble.num;
-
-        int nx = x + dx[dir], ny = y + dy[dir];
-
-        if(isRange(nx,ny)) {
-            dir = dirChange(dir);
-            return new Marble(x, y, dir, w, num);
-        } else {
-            return new Marble(nx, ny, dir, w, num);
-        }
-    }
-    static void moveAll() {
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                grid[i][j] = new Tuple(0, 0, 0);
         
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                for(int k = 0; k < (int) grid[i][j].size(); k++) {
-                    Marble marble = grid[i][j].get(k);
-
-                    Marble newMarble = move(marble);
-
-                    nextGrid[newMarble.x][newMarble.y].add(newMarble);
-                }
-            }
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                nextGrid[i][j] = new Tuple(0, 0, 0);
+        
+        int[] dirMapper = new int[ASCII_NUM];
+        dirMapper['U'] = 0;
+        dirMapper['R'] = 1;
+        dirMapper['L'] = 2;
+        dirMapper['D'] = 3;
+        
+        for(int i = 0; i < m; i++) {
+            int r = sc.nextInt();
+            int c = sc.nextInt();
+            char d = sc.next().charAt(0);
+            int w = sc.nextInt();
+            grid[r - 1][c - 1] = new Tuple(i + 1, w, dirMapper[d]);
         }
-    }
-    static void addMarble() {
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                if(nextGrid[i][j].size() == 0) continue;
-                
-                Collections.sort(nextGrid[i][j]);
-
-                int sum = nextGrid[i][j].stream().mapToInt(marble -> marble.w).sum();
-
-                nextGrid[i][j].get(0).w = sum;
-
-                while((int) nextGrid[i][j].size() > 1) {
-                    nextGrid[i][j].remove(nextGrid[i][j].size() - 1);
-                }
-            }
-        }
-    }
-    static boolean isRange(int x, int y) {
-        return x < 0 || y < 0 || x >= n || y >= n;
-    }
-    static int dirMapper(char dir) {
-        if(dir == 'D') return 0;
-        if(dir == 'U') return 1;
-        if(dir == 'L') return 2;
-        if(dir == 'R') return 3;
-
-        return -1;
-    }
-    static int dirChange(int dir) {
-        return dir ^ 1;
+        
+        // t초에 걸쳐 시뮬레이션을 진행합니다.
+        while(t-- > 0)
+            simulate();
+        
+        int marbleNum = getMarbleNum();
+        int maxWeight = getMaxWeight();
+        
+        System.out.print(marbleNum + " " + maxWeight);
     }
 }

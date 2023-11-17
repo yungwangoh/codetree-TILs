@@ -12,9 +12,9 @@ class Tuple implements Comparable<Tuple> {
 
     @Override
     public int compareTo(Tuple t) {
-        if(x != t.x) return x - t.x;
-        if(y != t.y) return y - t.y;
-        return z - t.z;
+        if(x != t.x) return t.x - x;
+        if(y != t.y) return t.y - y;
+        return t.z - z;
     }
 }
 public class Main {
@@ -130,7 +130,7 @@ public class Main {
                     Collections.sort(nextGrid[i][j]);
 
                     while((int) nextGrid[i][j].size() > k) {
-                        nextGrid[i][j].remove(0);
+                        nextGrid[i][j].remove(nextGrid[i][j].size() - 1);
                     }
                 }
             }

@@ -37,8 +37,9 @@ public class Main {
     }
     static void combi(int idx) {
         if(idx == n) {
+
             int cnt = 0;
-            for(int i = 0; i < nList.size(); i++) {
+            for(int i = 0; i < nList.size() - 1; i++) {
                 for(int j = i + 1; j < nList.size(); j++) {
                     if(check(nList.get(i), nList.get(j))) {
                         cnt++;
@@ -50,11 +51,11 @@ public class Main {
             return;
         }
 
-        for(int i = 0; i < n; i++) {
-            nList.add(list.get(i));
-            combi(idx + 1);
-            nList.remove(nList.size() - 1);
-        }
+        nList.add(list.get(idx));
+        combi(idx + 1);
+        nList.remove(nList.size() - 1);
+
+        combi(idx + 1);
     }
     static boolean check(Pair l1, Pair l2) {
         int x1 = l1.x1;
@@ -63,6 +64,6 @@ public class Main {
         int x2 = l2.x1;
         int y2 = l2.x2;
 
-        return !((x1 <= x2 && x2 <= y1) || (x1 <= y2 && y2 <= y1));
+        return !(x2 > y1 || y2 < x1);
     }
 }

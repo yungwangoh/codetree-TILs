@@ -38,16 +38,16 @@ public class Main {
     static void combi(int idx) {
         if(idx == n) {
 
-            int cnt = 0;
+            boolean flag = true;
             for(int i = 0; i < nList.size() - 1; i++) {
                 for(int j = i + 1; j < nList.size(); j++) {
                     if(check(nList.get(i), nList.get(j))) {
-                        cnt++;
+                        flag = false;
                     }
                 }
             }
             
-            max = Math.max(max, cnt);
+            if(flag) max = Math.max(max, nList.size());
             return;
         }
 

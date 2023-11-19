@@ -32,7 +32,8 @@ public class Main {
 
         //System.out.println(check(list.get(1), list.get(2)));
 
-        System.out.println(max);        
+        if(n == 1) System.out.println(1);
+        else System.out.println(max);        
     }
     static void combi(int idx) {
         if(idx == n) {

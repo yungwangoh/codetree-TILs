@@ -16,31 +16,18 @@ public class Main {
     static void func(int K, int N, int num) {
 
         if(num == N) {
-            if(!check()) print();
+            print();
             return;
         }
 
         for(int i = 1; i <= K; i++) {
+            if(num >= 2 && i == list.get(list.size() - 1) && i == list.get(list.size() - 2))
+                continue;
+
             list.add(i);
             func(K, N, num + 1);
             list.remove(list.size() - 1);
         }
-    }
-    static boolean check() {
-
-        int sum = 0;
-        int max = 0;
-        for(int i = 0; i < list.size() - 1; i++) {
-            if(list.get(i) == list.get(i + 1)) {
-                sum++;
-                max = Math.max(max, sum);
-            } else {
-                sum = 0;
-            }
-        }
-        max++;
-
-        return max >= 3;
     }
     static void print() {
 

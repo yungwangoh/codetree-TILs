@@ -16,27 +16,10 @@ public class Main {
 
         System.out.println(max);
     }
-    static String convert(String s) {
-
-        char[] str = new char[s.length()];
-
-        for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
-                str[i] = (char) (list.get(s.charAt(i) - 'a') + '0');
-            } else {
-                str[i] = s.charAt(i);
-            }   
-        }
-
-        return new String(str);
-    }
     static void recur(int idx, String s) {
         if(idx == 6) {
-            int sum = 0;
-            String result = convert(s);
-            //System.out.println(result);
 
-            max = Math.max(max, calculate(result));
+            max = Math.max(max, calculate(s));
 
             return;
         }
@@ -49,11 +32,11 @@ public class Main {
     }
     static int calculate(String s) {
         
-        int sum = (int) (s.charAt(0) - '0');
+        int sum = list.get((int) (s.charAt(0) - 'a'));
 
         for(int i = 1; i < s.length(); i += 2) {
             char oper = s.charAt(i);
-            int next = (int) (s.charAt(i + 1) - '0');
+            int next = list.get((int) (s.charAt(i + 1) - 'a'));
 
             if(oper == '+') {
                 sum += next;

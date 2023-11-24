@@ -40,7 +40,7 @@ public class Main {
         }
 
         if(list.size() >= 3) {
-            func(1, 0);
+            func(0, 0);
         } else {
             min = -1;
         }
@@ -62,6 +62,8 @@ public class Main {
         func(idx + 1, cnt);
     }
     static int check() {
+        // for(int i = 0; i < li.size(); i++) System.out.print(li.get(i) + " ");
+        // System.out.println();
 
         int sum = 0;
         for(int i = 0; i < li.size() - 1; i++) {

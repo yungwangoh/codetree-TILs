@@ -39,6 +39,8 @@ public class Main {
             }
         }
 
+        Collections.sort(list);
+
         if(list.size() >= 3) {
             func(0, 0);
         } else {
@@ -48,12 +50,13 @@ public class Main {
         System.out.println(min);
     }
     static void func(int idx, int cnt) {
-        if(idx == list.size()) {
-            if(cnt == 3) {
-                min = Math.min(min, check());
-            }
+
+        if(cnt == 3) {
+            min = Math.min(min, check());
             return;
         }
+
+        if(idx == list.size()) return;
 
         li.add(list.get(idx));
         func(idx + 1, cnt + 1);

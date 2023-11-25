@@ -6,7 +6,7 @@ public class Main {
     static final int MAX = 8;
     static int n;
     static List<Integer> list = new ArrayList<>();
-    static boolean[] visit = new boolean[MAX];
+    static boolean[] visit = new boolean[MAX + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);

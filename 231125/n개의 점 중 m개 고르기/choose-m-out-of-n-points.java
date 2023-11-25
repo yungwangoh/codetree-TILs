@@ -40,7 +40,7 @@ public class Main {
     }
     static int calculate() {
         
-        int m = Integer.MAX_VALUE;
+        int m = Integer.MIN_VALUE;
 
         // for(int i = 0; i < list.size(); i++) System.out.print(list.get(i) + " ");
         // System.out.println();
@@ -51,7 +51,7 @@ public class Main {
             for(int j = i + 1; j < list.size(); j++) {
                 int s2 = list.get(j);
 
-                m = Math.min(m, (int) (Math.pow(x[s1] - x[s2], 2) + Math.pow(y[s1] - y[s2], 2)));
+                m = Math.max(m, (int) (Math.pow(x[s1] - x[s2], 2) + Math.pow(y[s1] - y[s2], 2)));
             }
         }
 

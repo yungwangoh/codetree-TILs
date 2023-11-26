@@ -32,15 +32,21 @@ public class Main {
     }
     static void dfs(int x, int y) {
 
+        visit[x][y] = true;
+
         for(int i = 0; i < 2; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if(isRange(nx, ny) || arr[nx][ny] == 0) continue;
-
-            visit[nx][ny] = true;
-            dfs(nx, ny);
+            if(canGo(nx, ny)) {
+                dfs(nx, ny);
+            }
         }
+    }
+    static boolean canGo(int x, int y) {
+        if(isRange(x, y)) return false;
+        if(visit[x][y] || arr[x][y] == 0) return false;
+        return true;
     }
     static boolean isRange(int x, int y) {
         return x < 0 || y < 0 || x >= n || y >= m;

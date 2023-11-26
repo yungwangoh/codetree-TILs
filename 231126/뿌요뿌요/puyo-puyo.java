@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 
     static final int MAX = 100;
-    static int n, count = 0;
+    static int n, count = 0, max = Integer.MIN_VALUE;;
     static int[][] arr = new int[MAX + 1][MAX + 1];
     static boolean[][] visit = new boolean[MAX + 1][MAX + 1];
     static int[] dx = {1, -1, 0, 0};
@@ -20,16 +20,11 @@ public class Main {
                 arr[i][j] = sc.nextInt();
             }
         }
-
-        int max = Integer.MIN_VALUE;
         int sum = 0;
         for(int i = 1; i <= 100; i++) {
-            int tmp = bomb(i);
-            if(tmp != -1) {
-                sum += tmp;
-            }
-            max = Math.max(max, count);
+            sum += bomb(i);
         }
+
         System.out.println(sum + " " + max);
 
     }
@@ -43,16 +38,15 @@ public class Main {
                 if(arr[i][j] == k) {
                     count = 1;
                     dfs(i, j, k);
-                    cnt++;
+                    max = Math.max(max, count);
+                    if(count >= 4) {
+                        cnt++;
+                    }
                 }
             }
         }
 
-        if(count >= 4) {
-            return cnt;
-        } else {
-            return -1;
-        }
+        return cnt;
     }
     static void dfs(int x, int y, int k) {
 
@@ -62,13 +56,17 @@ public class Main {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if(isRange(nx, ny) || visit[nx][ny]) continue;
-
-            if(arr[nx][ny] == k) {
+            if(canGo(nx, ny, k)) {
                 dfs(nx, ny, k);
                 count++;
             }
         }
+    }
+    static boolean canGo(int x, int y, int k) {
+        if(isRange(x, y)) return false;
+        if(visit[x][y] || arr[x][y] != k) return false;
+
+        return true;
     }
     static boolean isRange(int x, int y) {
         return x < 0 || y < 0 || x >= n || y >= n;

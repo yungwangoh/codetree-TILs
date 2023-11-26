@@ -32,6 +32,8 @@ public class Main {
     }
     static void dfs(int x, int y) {
 
+        //if(x == n && y == m) return;
+
         visit[x][y] = true;
 
         for(int i = 0; i < 2; i++) {
@@ -40,7 +42,9 @@ public class Main {
 
             if(isRange(nx, ny) || arr[nx][ny] == 0) continue;
 
-            dfs(nx, ny);
+            if(arr[nx][ny] == 1) {
+                dfs(nx, ny);
+            }
         }
     }
     static boolean isRange(int x, int y) {

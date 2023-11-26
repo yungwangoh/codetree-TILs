@@ -32,8 +32,7 @@ public class Main {
     }
     static void dfs(int idx) {
     
-        for(int i = 0; i < list[idx].size(); i++) {
-            int vertex = list[idx].get(i);
+        for(Integer vertex : list[idx]) {
             if(!visit[vertex]) {
                 cnt++;
                 visit[vertex] = true;

@@ -36,12 +36,12 @@ public class Main {
     static int bomb(int k) {
 
         int cnt = 0;
-        count = 1;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 if(visit[i][j]) continue;
 
                 if(arr[i][j] == k) {
+                    count = 1;
                     dfs(i, j, k);
                     cnt++;
                 }

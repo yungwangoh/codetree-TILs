@@ -27,8 +27,8 @@ public class Main {
             int tmp = bomb(i);
             if(tmp != -1) {
                 sum += tmp;
-                max = Math.max(max, count);
             }
+            max = Math.max(max, count);
         }
         System.out.println(sum + " " + max);
 

@@ -22,7 +22,7 @@ public class Main {
             }
         }
 
-        int start = 0;
+        int start = 1;
         int safe = Integer.MIN_VALUE;
         int max = Integer.MIN_VALUE;
         while(start <= 100) {
@@ -56,7 +56,7 @@ public class Main {
             start++;
         }
 
-        System.out.println(max + " " + safe);
+        System.out.println(safe + " " + max);
     }
     static void dfs(int x, int y) {
 

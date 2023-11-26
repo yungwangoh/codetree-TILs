@@ -32,7 +32,7 @@ public class Main {
     }
     static void dfs(int x, int y) {
 
-        //if(x == n && y == m) return;
+        if(x == n && y == m) return;
 
         visit[x][y] = true;
 

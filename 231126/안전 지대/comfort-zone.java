@@ -22,7 +22,7 @@ public class Main {
             }
         }
 
-        int start = 1;
+        int start = 0;
         int safe = Integer.MIN_VALUE;
         int max = Integer.MIN_VALUE;
         while(start <= 100) {

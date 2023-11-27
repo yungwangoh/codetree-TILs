@@ -21,6 +21,7 @@ public class Main {
     static List<Integer> idxList = new ArrayList<>();
     static List<Pair> start = new ArrayList<>();
     static boolean[] v = new boolean[MAX];
+    static int max = 0;
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);
@@ -48,7 +49,7 @@ public class Main {
 
         combi(0, 0);
 
-        System.out.println(print());
+        System.out.println(max);
     }
     static int print() {
 
@@ -63,21 +64,18 @@ public class Main {
     }
     static void simulate(List<Integer> idxList) {
 
-        visit = new boolean[MAX + 1][MAX + 1];
         for(int i = 0; i < idxList.size(); i++) {
             int num = idxList.get(i);
-            //System.out.print(num + " ");
             Pair remove = list.get(num);
             arr[remove.x][remove.y] = 0;
         }
-        //System.out.println();
 
         for(Pair s : start) {
             visit[s.x][s.y] = true;
             bfs(s.x, s.y);
         }
 
-        //System.out.println(print());
+        max = Math.max(max, print());
 
         for(int i = 0; i < idxList.size(); i++) {
             int num = idxList.get(i);
@@ -87,6 +85,7 @@ public class Main {
     }
     static void combi(int idx, int cnt) {
         if(cnt == m) {
+            visit = new boolean[MAX + 1][MAX + 1];
             simulate(idxList);
             return;
         }

@@ -63,6 +63,7 @@ public class Main {
     }
     static void simulate(List<Integer> idxList) {
 
+        visit = new boolean[MAX + 1][MAX + 1];
         for(int i = 0; i < idxList.size(); i++) {
             int num = idxList.get(i);
             //System.out.print(num + " ");
@@ -72,7 +73,6 @@ public class Main {
         //System.out.println();
 
         for(Pair s : start) {
-            visit = new boolean[MAX + 1][MAX + 1];
             visit[s.x][s.y] = true;
             bfs(s.x, s.y);
         }

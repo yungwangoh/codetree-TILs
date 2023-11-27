@@ -45,6 +45,10 @@ public class Main {
             visit[r][c] = 1;
             Pair p = bfs(r, c);
 
+            if(p.x == -1 && p.y == -1) {
+                break;
+            }
+
             r = p.x;
             c = p.y;
 
@@ -103,6 +107,7 @@ public class Main {
 
         Collections.sort(list);
 
+        if(list.isEmpty()) return new Pair(-1, -1);
         return list.get(0);
     }
     static boolean canGo(int x, int y, int nx, int ny) {

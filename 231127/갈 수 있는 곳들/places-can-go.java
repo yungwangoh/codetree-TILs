@@ -14,7 +14,7 @@ public class Main {
     static final int MAX = 100;
     static int n, k;
     static int[][] arr = new int[MAX + 1][MAX + 1];
-    static int[][] visit;
+    static int[][] visit = new int[MAX + 1][MAX + 1];;
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     public static void main(String[] args) {
@@ -30,28 +30,15 @@ public class Main {
             }
         }
 
-
-        int sum = 0;
-        int[] checkArr = new int[n * n + 1];
         for(int i = 0; i < k; i++) {
             int x = sc.nextInt() - 1;
             int y = sc.nextInt() - 1;
 
-            visit = new int[MAX + 1][MAX + 1];
-
             visit[x][y] = 1;
             bfs(x, y);
-
-            int cnt = count();
-            
-            checkArr[cnt] = 1;
         }
 
-        for(int i = 0; i < n * n + 1; i++) {
-            if(checkArr[i] == 1) sum += i;
-        }
-
-        System.out.println(sum);
+        System.out.println(count());
     }
     static int count() {
         

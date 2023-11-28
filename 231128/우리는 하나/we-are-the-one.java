@@ -59,6 +59,7 @@ public class Main {
                 visit[p.x][p.y] = true;
                 bfs(p.x, p.y);
             }
+            //System.out.println();
 
             //print();
 
@@ -95,7 +96,7 @@ public class Main {
 
                 if(canGo(nx, ny)) {
 
-                    int num = Math.abs(arr[x][y] - arr[nx][ny]);
+                    int num = Math.abs(arr[np.x][np.y] - arr[nx][ny]);
 
                     if(num >= u && num <= d) {
                         visit[nx][ny] = true;

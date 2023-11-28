@@ -15,7 +15,7 @@ public class Main {
     static int n, m;
     static int[][] arr = new int[MAX + 1][MAX + 1];
     static int[][] draw = new int[MAX + 1][MAX + 1];
-    static boolean[][] visit = new boolean[MAX + 1][MAX + 1];
+    static boolean[][] visit;
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     public static void main(String[] args) {
@@ -36,41 +36,29 @@ public class Main {
         int sum = 0;
         int i = 0;
         while(true) {
+            visit = new boolean[MAX + 1][MAX + 1];
             sum = count();
             cnt++;
 
-            Pair init = searchNotVisited();
-
-            visit[init.x][init.y] = true;
-            List<Pair> list = new ArrayList(bfs(init.x, init.y));
+            visit[0][0] = true;
+            List<Pair> list = new ArrayList(bfs(0, 0));
 
             for(Pair p : list) arr[p.x][p.y] = 0;
 
             if(check()) break;
         }
 
-        System.out.println(cnt + " " + sum);
-        //print();        
+        System.out.println(cnt + " " + sum);       
     }
     static void print() {
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
-                System.out.print(arr[i][j] + " ");
+                System.out.print(visit[i][j] + " ");
             }
             System.out.println();
         }
         System.out.println();
-    }
-    static Pair searchNotVisited() {
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(!visit[i][j]) return new Pair(i, j);
-            }
-        }
-
-        return null;
     }
     static int count() {
         

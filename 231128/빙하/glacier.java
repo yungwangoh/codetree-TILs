@@ -45,7 +45,7 @@ public class Main {
 
             for(Pair p : list) arr[p.x][p.y] = 0;
 
-            if(check()) break;
+            if(list.isEmpty()) break;
         }
 
         System.out.println(cnt + " " + sum);       

@@ -28,6 +28,10 @@ public class Main {
         r2 = sc.nextInt() - 1;
         c2 = sc.nextInt() - 1;
 
+        if(r1 == 1 && c2 == 1 && r2 == 1 && c2 == 1) {
+            System.out.println(0);
+            System.exit(0);
+        }
 
         visit[r1][c1] = 0;
         System.out.println(bfs(r1, c1));
@@ -55,8 +59,7 @@ public class Main {
             }
         }
 
-        if(visit[r2][c2] > 0) return visit[r2][c2];
-        else return -1; 
+        return visit[r2][c2];
     }
     static boolean canGo(int x, int y) {
         if(isRange(x, y) || visit[x][y] > 0) return false;

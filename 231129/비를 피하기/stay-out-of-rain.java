@@ -16,6 +16,7 @@ public class Main {
     static int[][] arr = new int[MAX + 1][MAX + 1];
     static int[][] work = new int[MAX + 1][MAX + 1];
     static int[][] human = new int[MAX + 1][MAX + 1];
+    static Queue<Pair> q = new LinkedList<>();
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     static List<Pair> list = new ArrayList<>();
@@ -31,60 +32,37 @@ public class Main {
             for(int j = 0; j < n; j++) {
                 arr[i][j] = sc.nextInt();
 
-                if(arr[i][j] == 2) list.add(new Pair(i, j));
+                if(arr[i][j] == 3) list.add(new Pair(i, j));
             }
         }
 
         for(Pair p : list) {
-            init();
-            
-            bfs(p.x, p.y);
-
-            int cnt = count();
-            human[p.x][p.y] = cnt;
+            q.add(new Pair(p.x, p.y));
         }
+
+        bfs();
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                System.out.print(human[i][j] + " ");
+                if(arr[i][j] != 2) System.out.print(0 + " ");
+                else {
+                    if(arr[i][j] == 2 && work[i][j] == 0) System.out.print(-1 + " ");
+                    else {
+                        System.out.print(work[i][j] + " ");
+                    }
+                }
             }
             System.out.println();
         }
         System.out.println();
     }
-    static int count() {
-
-        int min = Integer.MAX_VALUE;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                if(arr[i][j] == 3 && work[i][j] != 0) {
-                    min = Math.min(min, work[i][j]);
-                }
-            }
-        }
-
-        if(min == Integer.MAX_VALUE) return -1;
-        else return min;
-    }
-    static void init() {
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                work[i][j] = 0;
-            }
-        }
-    }
-    static void bfs(int x, int y) {
-
-        Queue<Pair> q = new LinkedList<>();
-
-        q.add(new Pair(x, y));
+    static void bfs() {
 
         while(!q.isEmpty()) {
 
             Pair p = q.poll();
-            x = p.x;
-            y = p.y;
+            int x = p.x;
+            int y = p.y;
 
             for(int i = 0; i < 4; i++) {
                 int nx = x + dx[i];

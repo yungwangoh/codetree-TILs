@@ -59,7 +59,8 @@ public class Main {
             }
         }
 
-        return visit[r2][c2];
+        if(visit[r2][c2] > 0) return visit[r2][c2];
+        else return -1;
     }
     static boolean canGo(int x, int y) {
         if(isRange(x, y) || visit[x][y] > 0) return false;

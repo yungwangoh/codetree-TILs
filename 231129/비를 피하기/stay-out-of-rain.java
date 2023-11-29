@@ -15,7 +15,7 @@ public class Main {
     static int n, h, m;
     static int[][] arr = new int[MAX + 1][MAX + 1];
     static int[][] work = new int[MAX + 1][MAX + 1];
-    static int[][] human = new int[MAX + 1][MAX + 1];
+    static boolean[][] visit = new boolean[MAX + 1][MAX + 1];
     static Queue<Pair> q = new LinkedList<>();
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
@@ -37,6 +37,8 @@ public class Main {
         }
 
         for(Pair p : list) {
+            work[p.x][p.y] = 0;
+            visit[p.x][p.y] = true;
             q.add(new Pair(p.x, p.y));
         }
 
@@ -70,6 +72,7 @@ public class Main {
 
                 if(canGo(nx, ny)) {
                     work[nx][ny] = work[x][y] + 1;
+                    visit[nx][ny] = true;
                     q.add(new Pair(nx, ny));
                 }
             }
@@ -77,7 +80,7 @@ public class Main {
     }
     static boolean canGo(int x, int y) {
         if(isRange(x, y)) return false;
-        if(work[x][y] > 0 || arr[x][y] == 1) return false;
+        if(work[x][y] > 0 || arr[x][y] == 1 || visit[x][y]) return false;
 
         return true;
     }

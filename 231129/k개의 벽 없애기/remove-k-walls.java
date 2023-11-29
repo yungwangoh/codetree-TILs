@@ -69,16 +69,6 @@ public class Main {
             arr[p.x][p.y] = 1;
         }
     }
-    static void print(int[][] arr) {
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
     static void backtracking(int idx, int cnt) {
         if(cnt == k) {
             controllWall(list);

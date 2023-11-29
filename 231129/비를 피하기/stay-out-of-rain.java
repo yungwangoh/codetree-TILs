@@ -57,13 +57,13 @@ public class Main {
         int min = Integer.MAX_VALUE;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                if(arr[i][j] == 3) {
+                if(arr[i][j] == 3 && work[i][j] != 0) {
                     min = Math.min(min, work[i][j]);
                 }
             }
         }
 
-        if(min == 0) return -1;
+        if(min == Integer.MAX_VALUE) return -1;
         else return min;
     }
     static void init() {

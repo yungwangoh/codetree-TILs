@@ -27,7 +27,7 @@ public class Main {
 
             x = q.poll();
 
-            if(x == 1) break;
+            //if(x == 1) break;
 
             for(int num : new int[]{one(x), two(x), three(x), four(x)}) {
                 if(isRange(num) || visit[num]) continue;

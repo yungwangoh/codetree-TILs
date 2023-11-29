@@ -28,7 +28,7 @@ public class Main {
         r2 = sc.nextInt() - 1;
         c2 = sc.nextInt() - 1;
 
-        if(r1 == 1 && c2 == 1 && r2 == 1 && c2 == 1) {
+        if(r1 == 0 && c2 == 0 && r2 == 0 && c2 == 0) {
             System.out.println(0);
             System.exit(0);
         }

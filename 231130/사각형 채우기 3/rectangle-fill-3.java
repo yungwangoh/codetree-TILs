@@ -22,7 +22,7 @@ public class Main {
         if(n == 0) memo[n] = 1;
         else if(n == 1) memo[n] = 2;
         else if(n == 2) memo[n] = 7;
-        else memo[n] = (3 * dp(n - 1) + dp(n - 2) - dp(n - 3)) % MOD;
+        else memo[n] = ((3 * dp(n - 1)) + dp(n - 2) - dp(n - 3)) % MOD;
 
         return memo[n];
     }

@@ -13,17 +13,19 @@ public class Main {
 
         for(int i = 0; i <= n; i++) memo[i] = -1;
 
-        System.out.println(dp(n) % 10007);
+        System.out.println(dp(n));
     }
     static int dp(int n) {
         if(memo[n] != -1) {
             return memo[n];
         }
-        if(n == 0) memo[n] = 0;
+        if(n == 0) memo[n] = 1;
         else if(n == 1) memo[n] = 0;
         else if(n == 2) memo[n] = 1;
-        else if(n == 3) memo[n] = 1;
-        else memo[n] = dp(n - 2) + dp(n - 3);
+        else {
+            memo[n] = dp(n - 2) + dp(n - 3);
+            memo[n] %= 10007;
+        }
 
         return memo[n];
     }

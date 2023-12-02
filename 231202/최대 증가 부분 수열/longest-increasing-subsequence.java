@@ -26,7 +26,7 @@ public class Main {
         for(int i = 0; i < n; i++) System.out.print(dp[i] + " ");
         System.out.println();
     }
-    static void init(int n) {
+    static int init(int n) {
         int max = 0;
         for(int i = 0; i < n; i++) max = Math.max(max, dp[i]);
 

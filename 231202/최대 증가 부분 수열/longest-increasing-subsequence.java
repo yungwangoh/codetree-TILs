@@ -18,7 +18,7 @@ public class Main {
         }
 
         func(n);
-        System.out.println(init());
+        System.out.println(init(n));
         //print(n);
     }
     static void print(int n) {

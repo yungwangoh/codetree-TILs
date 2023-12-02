@@ -16,7 +16,7 @@ public class Main {
         for(int i = 0; i < n; i++) arr[i] = sc.nextInt();
 
         System.out.println(func(n));
-        print(n);
+        //print(n);
     }
     static void print(int n) {
         for(int i = 0; i < n; i++) System.out.print(dp[i] + " ");
@@ -38,7 +38,7 @@ public class Main {
             }
         }
 
-        return dp[n];
+        return dp[n - 1];
     }
     static void init(int n) {
         for(int i = 0; i < n; i++) dp[i] = INT_MIN;

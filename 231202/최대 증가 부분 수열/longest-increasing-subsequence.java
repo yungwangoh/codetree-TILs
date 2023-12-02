@@ -17,8 +17,9 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
+        init(n);
         func(n);
-        System.out.println(init(n));
+        System.out.println(max(n));
         //print(n);
     }
     static void print(int n) {
@@ -26,25 +27,27 @@ public class Main {
         for(int i = 0; i < n; i++) System.out.print(dp[i] + " ");
         System.out.println();
     }
-    static int init(int n) {
+    static void init(int n) {
+        for(int i = 0; i < n; i++) dp[i] = INT_MIN;
+    }
+    static int max(int n) {
         int max = 0;
         for(int i = 0; i < n; i++) max = Math.max(max, dp[i]);
 
         return max;
     }
-    static int func(int n) {
+    static void func(int n) {
 
         dp[0] = 1;
 
         for(int i = 1; i < n; i++) {
             for(int j = 0; j < i; j++) {
+                if(dp[j] == INT_MIN) continue;
                 
                 if(arr[i] > arr[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
         }
-
-        return dp[n - 1];
     }
 }

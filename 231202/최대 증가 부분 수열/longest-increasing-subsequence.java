@@ -38,8 +38,8 @@ public class Main {
                 
                 if(arr[i] > arr[j]) {
                     max = Math.max(max, dp[j] + 1);
-                    dp[i] = max;
                 }
+                dp[i] = max;
             }
         }
 

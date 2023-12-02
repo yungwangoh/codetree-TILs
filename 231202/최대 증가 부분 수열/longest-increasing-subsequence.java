@@ -17,6 +17,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
+        init(n);
         func(n);
         System.out.println(max(n));
         //print(n);

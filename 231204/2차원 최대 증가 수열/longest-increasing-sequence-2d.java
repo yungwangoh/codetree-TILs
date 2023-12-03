@@ -16,7 +16,7 @@ public class Main {
         m = sc.nextInt();
 
         for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
+            for(int j = 0; j < m; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
@@ -58,8 +58,8 @@ public class Main {
 
         init();
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j < m; j++) {
                 func2(i, j);
             }
         }
@@ -69,7 +69,7 @@ public class Main {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
 
-                if(arr[x][y] > arr[i][j]) {
+                if(arr[i][j] < arr[x][y]) {
                     dp[x][y] = Math.max(dp[x][y], dp[i][j] + 1);
                 }
             }

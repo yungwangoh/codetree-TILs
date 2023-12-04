@@ -36,7 +36,7 @@ public class Main {
             arr[i] = new Tuple(s, e, p);
         }
 
-        Arrays.sort(arr, 0, n);
+        //Arrays.sort(arr, 0, n);
 
         func();
 

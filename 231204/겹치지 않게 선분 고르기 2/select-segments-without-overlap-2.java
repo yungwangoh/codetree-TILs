@@ -45,6 +45,7 @@ public class Main {
         System.out.println(max());
     }
     static void func() {
+        dp[0] = 1;
 
         for(int i = 1; i < n; i++) {
 

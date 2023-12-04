@@ -35,7 +35,7 @@ public class Main {
             arr[i] = new Pair(x1, x2);
         }
 
-        Arrays.sort(arr, 0, n - 1);
+        //Arrays.sort(arr, 0, n - 1);
 
         func();
         System.out.println(max());
@@ -65,6 +65,6 @@ public class Main {
         return max;
     }
     static boolean isRange(int x1, int x2, int nx1, int nx2) {
-        return (x1 < nx1 && x2 < nx2);
+        return (x2 < nx1) || (nx2 < x1);
     }
 }

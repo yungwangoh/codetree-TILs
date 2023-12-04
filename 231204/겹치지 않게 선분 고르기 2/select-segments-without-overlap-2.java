@@ -44,30 +44,19 @@ public class Main {
         func();
         System.out.println(max());
     }
-    static void init() {
-        for(int i = 0; i < n; i++) dp[i] = 1;
-
-        dp[0] = 1;
-    }
     static void func() {
 
-        init();
-
         for(int i = 1; i < n; i++) {
-            int m = 1;
+
+            dp[i] = 1;
             for(int j = 0; j < i; j++) {
-                //if(dp[j] == INT) continue;
 
                 if(isRange(arr[j].x1, arr[j].x2, arr[i].x1, arr[i].x2)) {
-                    m = Math.max(m, dp[j] + 1);
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
                 
             }
-            dp[i] = m;
         }
-
-        // for(int i = 0; i < n; i++) System.out.print(dp[i] + " ");
-        // System.out.println();
     }
     static int max() {
 

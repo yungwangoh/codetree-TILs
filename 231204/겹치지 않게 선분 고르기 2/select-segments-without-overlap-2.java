@@ -54,6 +54,7 @@ public class Main {
 
         for(int i = 1; i < n; i++) {
             for(int j = 0; j < i; j++) {
+                if(dp[j] == INT) continue;
 
                 if(isRange(arr[j].x1, arr[j].x2, arr[i].x1, arr[i].x2)) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
@@ -64,7 +65,7 @@ public class Main {
     static int max() {
 
         int max = Integer.MIN_VALUE;
-        for(int i = 0; i < n; i++) max = Math.max(max, dp[i]);
+        for(int i = 0; i <= n; i++) max = Math.max(max, dp[i]);
         return max;
     }
     static boolean isRange(int x1, int x2, int nx1, int nx2) {

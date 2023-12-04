@@ -2,16 +2,16 @@ import java.io.*;
 import java.util.*;
 
 class Pair implements Comparable<Pair> {
-    int x1, x2;
+    int x1, x2, num;
 
-    public Pair(int x1, int x2) {
+    public Pair(int x1, int x2, int num) {
         this.x1 = x1;
         this.x2 = x2;
+        this.num = num;
     }
 
     @Override
     public int compareTo(Pair p) {
-        if(x1 == p.x1) return x2 - p.x2;
         return x1 - p.x1;
     }
 }
@@ -32,19 +32,20 @@ public class Main {
             int x1 = sc.nextInt();
             int x2 = sc.nextInt();
 
-            arr[i] = new Pair(x1, x2);
+            arr[i] = new Pair(x1, x2, x2 - x1);
         }
 
         Arrays.sort(arr, 0, n);
 
-        // for(int i = 0; i < n; i++) 
+        // for(int i = 0; i < n; i++) {
         //     System.out.println(arr[i].x1 + " " + arr[i].x2);
+        // }
 
         func();
         System.out.println(max());
     }
     static void init() {
-        for(int i = 0; i <= n; i++) dp[i] = INT;
+        for(int i = 0; i < n; i++) dp[i] = 1;
 
         dp[0] = 1;
     }
@@ -52,23 +53,29 @@ public class Main {
 
         init();
 
-        for(int i = 1; i <= n; i++) {
+        for(int i = 1; i < n; i++) {
+            int m = 1;
             for(int j = 0; j < i; j++) {
-                if(dp[j] == INT) continue;
+                //if(dp[j] == INT) continue;
 
                 if(isRange(arr[j].x1, arr[j].x2, arr[i].x1, arr[i].x2)) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                    m = Math.max(m, dp[j] + 1);
                 }
+                
             }
+            dp[i] = m;
         }
+
+        // for(int i = 0; i < n; i++) System.out.print(dp[i] + " ");
+        // System.out.println();
     }
     static int max() {
 
         int max = Integer.MIN_VALUE;
-        for(int i = 0; i <= n; i++) max = Math.max(max, dp[i]);
+        for(int i = 0; i < n; i++) max = Math.max(max, dp[i]);
         return max;
     }
     static boolean isRange(int x1, int x2, int nx1, int nx2) {
-        return (x2 < nx1) || (nx2 < x1);
+        return x2 < nx1 || nx2 < x1;
     }
 }

@@ -61,7 +61,7 @@ public class Main {
             for(int j = 0; j < i; j++) {
 
                 if(isRange(arr[j].s, arr[j].e, arr[i].s, arr[i].e)) {
-                    dp[i] = Math.max(dp[i], dp[j] + arr[i].p);
+                    dp[i] = Math.max(dp[i], dp[j] + arr[j].p);
                 }
             }
         }

@@ -35,7 +35,10 @@ public class Main {
             arr[i] = new Pair(x1, x2);
         }
 
-        //Arrays.sort(arr, 0, n - 1);
+        Arrays.sort(arr, 0, n);
+
+        // for(int i = 0; i < n; i++) 
+        //     System.out.println(arr[i].x1 + " " + arr[i].x2);
 
         func();
         System.out.println(max());

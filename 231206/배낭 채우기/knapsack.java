@@ -23,14 +23,23 @@ public class Main {
         }
 
         System.out.println(func());
+        //print();
     }
     static void init() {
         for(int i = 0; i <= n; i++) {
             for(int j = 0; j <= m; j++) {
-                dp[i][j] = INT;
+                dp[i][j] = 0;
             }
         }
         dp[0][0] = 0;
+    }
+    static void print() {
+
+        for(int i = 1; i <= n; i++) {
+            for(int j = 0; j <= m; j++) System.out.print(dp[i][j] + " ");
+            System.out.println();
+        }
+        System.out.println();
     }
     static int func() {
 
@@ -40,7 +49,9 @@ public class Main {
             for(int j = 0; j <= m; j++) {
                 if(j >= w[i]) {
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - w[i]] + v[i]);
-                } else {
+                } 
+
+                if(j < w[i]) {
                     dp[i][j] = dp[i - 1][j];
                 }
             }

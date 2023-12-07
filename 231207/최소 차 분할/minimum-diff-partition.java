@@ -5,7 +5,7 @@ public class Main {
 
     static int n, m;
     static final int MAX_N = 100;
-    static final int MAX_M = 10000;
+    static final int MAX_M = 100000;
     static int[] arr = new int[MAX_N + 1];
     static boolean[][] dp = new boolean[MAX_N + 1][MAX_M + 1];
     public static void main(String[] args) {

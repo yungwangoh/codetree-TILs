@@ -18,8 +18,8 @@ public class Main {
 
         for(int i = 1; i <= n; i++) m += arr[i];
 
-        if(func()) System.out.println("No");
-        else System.out.println("Yes");
+        if(func()) System.out.println("Yes");
+        else System.out.println("No");
         //print();
     }
     static void init() {
@@ -47,11 +47,10 @@ public class Main {
             }
         }
 
-        boolean flag = false;
-        for(int j = 0; j <= m; j++) {
-            if(!dp[n][j]) flag = true;
+        for(int i = 1; i < m; i++) {
+            if(dp[n][i] && i == m - i) return true;
         }
 
-        return flag;
+        return false;
     }
 }

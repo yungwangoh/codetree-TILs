@@ -18,11 +18,23 @@ public class Main {
 
         for(int i = 1; i <= n; i++) m += arr[i];
 
-        if(func()) System.out.println("Yes");
-        else System.out.println("No");
+        if(func()) System.out.println("No");
+        else System.out.println("Yes");
+        //print();
     }
     static void init() {
         dp[0][0] = true;
+    }
+    static void print() {
+
+        for(int i = 1; i <= n; i++) {
+            for(int j = 0; j <= m; j++) {
+                if(dp[i][j]) System.out.print(1 + " ");
+                else System.out.print(0 + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
     static boolean func() {
 
@@ -35,6 +47,11 @@ public class Main {
             }
         }
 
-        return dp[n][m - 1];
+        boolean flag = false;
+        for(int j = 0; j <= m; j++) {
+            if(!dp[n][j]) flag = true;
+        }
+
+        return flag;
     }
 }

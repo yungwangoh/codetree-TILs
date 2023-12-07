@@ -47,10 +47,6 @@ public class Main {
             }
         }
 
-        for(int i = 1; i < m; i++) {
-            if(i == m - i) return true;
-        }
-
-        return false;
+        return m % 2 == 0;
     }
 }

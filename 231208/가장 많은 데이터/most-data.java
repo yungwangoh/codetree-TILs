@@ -11,15 +11,13 @@ public class Main {
 
         n = sc.nextInt();
 
+        int max = 0;
         for(int i = 0; i < n; i++) {
             String s = sc.next();
 
             map.put(s, map.getOrDefault(s, 0) + 1);
-        }
 
-        int max = 0;
-        for(String s : map.keySet()) {
-            max = Math.max(max, map.get(s));
+            max = Math.max(max, map.getOrDefault(s, 0));
         }
 
         System.out.println(max);

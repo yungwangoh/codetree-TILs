@@ -24,7 +24,7 @@ public class Main {
             }
         }
 
-        int sum = 0;
+        long sum = 0;
         for(int x : map.keySet()) {
             sum += map.get(x);
         }

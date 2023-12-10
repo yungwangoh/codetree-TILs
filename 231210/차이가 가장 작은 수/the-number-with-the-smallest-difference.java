@@ -22,7 +22,8 @@ public class Main {
                 ans.add(set.ceiling(num) - num);
             } 
 
-            ans.add(num - set.floor(num));
+            if(set.floor(num) != null)
+                ans.add(num - set.floor(num));
 
             set.add(num);
         }

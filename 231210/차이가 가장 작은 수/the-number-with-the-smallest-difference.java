@@ -19,14 +19,17 @@ public class Main {
             if(!set.isEmpty()) {
                 if(set.higher(num) != null) {
                     ans.add(set.higher(num) - num);
-                }
+                } 
 
-                ans.add(num - set.lower(num));
+                if(set.lower(num) != null) {
+                    ans.add(num - set.lower(num));
+                }
             }
 
             set.add(num);
         }
 
-        System.out.println(ans.ceiling(m));
+        if(ans.ceiling(m) == null) System.out.println(-1);
+        else System.out.println(ans.ceiling(m));
     }
 }

@@ -13,21 +13,21 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
 
-        for(int i = 0; i < n; i++) {
+        set.add(sc.nextInt());
+
+        for(int i = 1; i < n; i++) {
             int num = sc.nextInt();
 
-            if(!set.isEmpty()) {
-                if(set.higher(num) != null) {
-                    ans.add(set.higher(num) - num);
-                } 
+            if(set.ceiling(num) != null) {
+                ans.add(set.ceiling(num) - num);
+            } 
 
-                if(set.lower(num) != null) {
-                    ans.add(num - set.lower(num));
-                }
-            }
+            ans.add(num - set.floor(num));
 
             set.add(num);
         }
+
+        //for(int s : ans) System.out.println(s);
 
         if(ans.ceiling(m) == null) System.out.println(-1);
         else System.out.println(ans.ceiling(m));

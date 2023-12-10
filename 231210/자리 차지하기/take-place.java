@@ -14,14 +14,22 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
 
-       // for(int i = 0; i < m; i++) arr[i] = i + 1;
+        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();
 
-        for(int i = 0; i < n; i++) {
-            int num = sc.nextInt();
-
-            set.add(num);
+        for(int i = 1; i <= m; i++) {
+            set.add(i);
         }
 
-        System.out.println(set.size());
+        for(int i = 0; i < n; i++) {
+            int x = arr[i];
+
+            if(set.floor(x) == null) break;
+            else {
+                int num = set.floor(x);
+                set.remove(num);
+            }
+        }
+
+        System.out.println(m - set.size());
     }
 }

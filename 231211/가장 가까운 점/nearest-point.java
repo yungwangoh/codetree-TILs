@@ -32,12 +32,13 @@ public class Main {
             q.add(new Pair(x, y));
         }
 
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i < m; i++) {
             Pair p = q.poll();
 
-            Pair np = new Pair(p.x + 2, p.y + 2);
+            p.x += 2;
+            p.y += 2;
 
-            q.add(np);
+            q.add(p);
         }
 
         Pair p = q.peek();

@@ -11,7 +11,8 @@ class Pair implements Comparable<Pair> {
 
     @Override
     public int compareTo(Pair p) {
-        return (Math.abs(x) + Math.abs(y)) - (Math.abs(p.x) + Math.abs(p.y));
+        if((x + y) == (p.x + p.y)) return x - p.x;
+        return (x + y) - (p.x + p.y);
     }
 }
 public class Main {
@@ -35,10 +36,9 @@ public class Main {
         for(int i = 0; i < m; i++) {
             Pair p = q.poll();
 
-            p.x += 2;
-            p.y += 2;
+            Pair np = new Pair(p.x + 2, p.y + 2);
 
-            q.add(p);
+            q.add(np);
         }
 
         Pair p = q.peek();

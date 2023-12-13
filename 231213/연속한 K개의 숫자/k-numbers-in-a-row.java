@@ -22,11 +22,13 @@ public class Main {
             arr[num] = 0;
         }  
 
-        // if(arr[1] == 0) prefix[1] = 0;
-        // else prefix[1] = 1;
+        if(arr[1] == 0) prefix[1] = 0;
+        else prefix[1] = 1;
 
-        for(int i = 1; i <= n; i++) {
-            prefix[i] = prefix[i - 1] + arr[i];
+        for(int i = 2; i <= n; i++) {
+
+            if(arr[i] != 0) prefix[i] = prefix[i - 1] + 1;
+            else prefix[i] = prefix[i - 1];
         }
 
         int max = 0;

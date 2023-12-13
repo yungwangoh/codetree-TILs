@@ -19,7 +19,7 @@ public class Main {
         for(int i = 1; i <= n; i++) prefix[i] = prefix[i - 1] + arr[i];
 
         int cnt = 0;
-        for(int i = 0; i < n; i++) {
+        for(int i = 1; i <= n; i++) {
             for(int j = 1; j <= n; j++) {
                 int sum = prefix[j + i - 1] - prefix[j - 1];
 

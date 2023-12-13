@@ -15,28 +15,19 @@ public class Main {
         k = sc.nextInt();
         b = sc.nextInt();
 
-        for(int i = 0; i <= n; i++) arr[i] = 1;
         for(int i = 0; i < b; i++) {
             int num = sc.nextInt();
 
-            arr[num] = 0;
+            arr[num] = 1;
         }  
 
-        if(arr[1] == 0) prefix[1] = 0;
-        else prefix[1] = 1;
+        for(int i = 1; i <= n; i++) prefix[i] = prefix[i - 1] + arr[i];
 
-        for(int i = 2; i <= n; i++) {
-
-            if(arr[i] != 0) prefix[i] = prefix[i - 1] + 1;
-            else prefix[i] = prefix[i - 1];
+        int min = Integer.MAX_VALUE;
+        for(int i = 1; i <= n - k + 1; i++) {
+            min = Math.min(min, prefix[i + k - 1] - prefix[i - 1]);
         }
 
-        int max = 0;
-        for(int i = 1; i <= n; i++) {
-            max = Math.max(max, prefix[i]);
-        }
-
-        if(max > k) System.out.println(0);
-        else System.out.println(k - max);
+        System.out.println(min);
     }
 }

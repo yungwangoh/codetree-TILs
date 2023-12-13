@@ -54,12 +54,12 @@ public class Main {
             p[i] = new EnteringPerson(a, i + 1, t);
         }
 
-        //p[n] = new EnteringPerson(INT, n + 1, 0);
+        p[n] = new EnteringPerson(INT, n + 1, 0);
 
-        Arrays.sort(p, 0, n);
+        Arrays.sort(p, 0, n + 1);
 
         int exitTime = 0;
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i <= n; i++) {
             int a = p[i].a;
             int num = p[i].num;
             int t = p[i].t;

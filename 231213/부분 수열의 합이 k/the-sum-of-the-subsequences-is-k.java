@@ -20,7 +20,7 @@ public class Main {
 
         int cnt = 0;
         for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= n; j++) {
+            for(int j = 1; j <= n - i + 1; j++) {
                 int sum = prefix[j + i - 1] - prefix[j - 1];
 
                 if(sum == k) cnt++;

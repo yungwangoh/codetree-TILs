@@ -23,8 +23,8 @@ public class Main {
         }
 
         int max = Integer.MIN_VALUE;
-        for(int i = 1; i <= n - k; i++) {
-            max = Math.max(max, prefix[k + i - 1] - prefix[i] + arr[i]);
+        for(int i = 1; i <= n - k + 1; i++) {
+            max = Math.max(max, prefix[k + i - 1] - prefix[i - 1]);
         }
 
         System.out.println(max);

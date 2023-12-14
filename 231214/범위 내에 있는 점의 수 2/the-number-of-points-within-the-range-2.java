@@ -33,6 +33,6 @@ public class Main {
     }
     static int sum(int s, int e) {
         if(s == 0) return prefix[e];
-        return prefix[e] - prefix[s];
+        return prefix[e] - prefix[s - 1];
     }
 }

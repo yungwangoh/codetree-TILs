@@ -33,7 +33,7 @@ public class Main {
             int x = sc.nextInt();
             int y = sc.nextInt();
 
-            int sum = prefix[y] - prefix[x];
+            int sum = prefix[y + 1] - prefix[x];
 
             if(sum < 0) sum = 0;
     

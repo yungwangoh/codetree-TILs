@@ -50,10 +50,13 @@ public class Main {
             int x2 = parseInt(st1.nextToken());
             int y2 = parseInt(st1.nextToken());
 
-            bw.write(getSum(1, x1, y1, x2, y2) + " ");
-            bw.write(getSum(2, x1, y1, x2, y2) + " ");
-            bw.write(getSum(3, x1, y1, x2, y2) + " ");
-            bw.write("\n");
+            StringBuilder sb = new StringBuilder();
+
+            sb.append(String.valueOf(getSum(1, x1, y1, x2, y2)) + " ");
+            sb.append(String.valueOf(getSum(2, x1, y1, x2, y2)) + " ");
+            sb.append(String.valueOf(getSum(3, x1, y1, x2, y2)) + " ");
+
+            bw.write(sb.toString() + "\n");
         }
 
         bw.flush();

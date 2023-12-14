@@ -48,8 +48,7 @@ public class Main {
 
             System.out.print(getSum(1, x1, y1, x2, y2) + " ");
             System.out.print(getSum(2, x1, y1, x2, y2) + " ");
-            System.out.print(getSum(3, x1, y1, x2, y2) + " ");
-            System.out.println();
+            System.out.println(getSum(3, x1, y1, x2, y2) + " ");
         }
     }
     static int getSum(int c, int x1, int y1, int x2, int y2) {

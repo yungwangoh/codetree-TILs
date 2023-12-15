@@ -21,8 +21,8 @@ public class Main {
         int max = 0;
         for(int i = 1; i <= n; i++) {
 
-            while(j + 1 <= n && count[arr[i]] < 2) {
-                count[arr[i]]++;
+            while(j + 1 <= n && count[arr[j + 1]] != 1) {
+                count[arr[j + 1]]++;
                 j++;
             }
 

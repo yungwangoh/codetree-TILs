@@ -33,7 +33,7 @@ public class Main {
             }
 
             if(j == n + 1) return false;
-            else j++;
+            j++;
         }
 
         return true;

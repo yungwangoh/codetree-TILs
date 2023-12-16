@@ -33,8 +33,6 @@ public class Main {
             max = Math.max(max, sum);
 
             sum -= arr[i];
-
-            if(j >= MAX_C) break;
         }
 
         System.out.println(max);

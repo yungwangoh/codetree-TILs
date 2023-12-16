@@ -1,11 +1,25 @@
 import java.io.*;
 import java.util.*;
 
+class Candy implements Comparable<Candy> {
+
+    int x, cnt;
+
+    public Candy(int x, int cnt) {
+        this.x = x;
+        this.cnt = cnt;
+    }
+
+    @Override
+    public int compareTo(Candy c) {
+        return this.x - c.x;
+    }
+}
 public class Main {
 
+    static final int MAX_N = 1000000;
+    static Candy[] candies = new Candy[MAX_N + 1];
     static int n, k;
-    static final int MAX_C = 4000000;
-    static int[] arr = new int[MAX_C + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);
@@ -13,28 +27,37 @@ public class Main {
         n = sc.nextInt();
         k = sc.nextInt();
 
-        for(int i = 0; i < n; i++) {
-            int candy = sc.nextInt();
-            int loc = sc.nextInt();
+        for(int i = 1; i <= n; i++) {
+            int cnt = sc.nextInt();
+            int x = sc.nextInt();
 
-            arr[loc] += candy;
+            candies[i] = new Candy(x, cnt);
         }
 
-        int j = 0;
-        int sum = 0;
-        int max = Integer.MIN_VALUE;
-        for(int i = 0; i <= MAX_C; i++) {
+        Arrays.sort(candies, 1, n + 1);
 
-            while(j <= 2 * k + i && j <= MAX_C) {
-                sum += arr[j];
+        int ans = 0;
+
+        int totalNums = 0;
+        int j = 0;
+        for(int i = 1; i <= n; i++) {
+
+            while(j + 1 <= n && getPosOfCandy(j + 1) - getPosOfCandy(i) <= 2 * k) {
+                totalNums += getNumOfCandy(j + 1);
                 j++;
             }
 
-            max = Math.max(max, sum);
+            ans = Math.max(ans, totalNums);
 
-            sum -= arr[i];
+            totalNums -= getNumOfCandy(i);
         }
 
-        System.out.println(max);
+        System.out.println(ans);
+    }
+    static int getPosOfCandy(int candyIdx) {
+        return candies[candyIdx].x;
+    }
+    static int getNumOfCandy(int candyIdx) {
+        return candies[candyIdx].cnt;
     }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 
     static int n, k;
-    static final int MAX_C = 1000000;
+    static final int MAX_C = 4000000;
     static int[] arr = new int[MAX_C + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
@@ -17,7 +17,7 @@ public class Main {
             int candy = sc.nextInt();
             int loc = sc.nextInt();
 
-            arr[loc] = candy;
+            arr[loc] += candy;
         }
 
         int j = 0;
@@ -30,11 +30,11 @@ public class Main {
                 j++;
             }
 
-            if(j >= MAX_C) break;
-
             max = Math.max(max, sum);
 
             sum -= arr[i];
+
+            if(j >= MAX_C) break;
         }
 
         System.out.println(max);

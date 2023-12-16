@@ -25,8 +25,8 @@ public class Main {
         int max = Integer.MIN_VALUE;
         for(int i = 0; i <= MAX_C; i++) {
 
-            while(j + 1 <= 2 * k + i) {
-                sum += arr[j + 1];
+            while(j <= 2 * k + i) {
+                sum += arr[j];
                 j++;
             }
 

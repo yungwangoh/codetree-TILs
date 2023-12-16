@@ -15,13 +15,11 @@ public class Main {
 
         for(int i = 1; i <= n; i++) arr[i] = sc.nextInt();
 
-        Arrays.sort(arr, 1, n + 1);
-
         int j = n;
         int sum = 0;
         for(int i = 1; i <= n; i++) {
 
-            while(j != 1 && arr[i] + arr[j] != 0) {
+            while(j != 1 && Math.abs(arr[i] + arr[j]) > 0) {
                 set.add(Math.abs(arr[i] + arr[j]));
                 j--;
             }

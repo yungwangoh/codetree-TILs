@@ -28,12 +28,12 @@ public class Main {
                 j--;
             }
 
-            if(j <= i || min == 0) break;
-
-            if(arr[i] + arr[j] < 0) {
+            if(arr[i] + arr[j] <= 0) {
                 int sum = Math.abs(arr[i] + arr[j]);
                 min = Math.min(min, sum);
             }
+
+            if(j <= i || min == 0) break;
         }
 
         System.out.println(min);

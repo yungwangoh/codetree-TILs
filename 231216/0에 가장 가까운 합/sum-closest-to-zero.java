@@ -18,23 +18,16 @@ public class Main {
         Arrays.sort(arr, 1, n + 1);
 
         int j = n;
-        int min = Math.abs(arr[1] + arr[n]);
+        int min = Integer.MAX_VALUE;
         for(int i = 1; i <= n; i++) {
 
-            while(j != i && arr[i] + arr[j] > 0) {
-                int sum = Math.abs(arr[i] + arr[j]);
-                //System.out.println(sum);
-                min = Math.min(min, sum);
-                j--;
+            if(i < j) {
+                min = Math.min(min, Math.abs(arr[i] + arr[j]));
             }
 
-            if(j <= i) break;
-
-            if(arr[i] + arr[j] < 0) {
-                int sum = Math.abs(arr[i] + arr[j]);
-                min = Math.min(min, sum);
-            } else if(arr[i] + arr[j] == 0){
-                min = 0;
+            while(i < j - 1 && arr[i] + arr[j] > 0) {
+                j--;
+                min = Math.min(min, Math.abs(arr[i] + arr[j]));
             }
         }
 

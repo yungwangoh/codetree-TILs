@@ -25,7 +25,7 @@ public class Main {
                 min = Math.min(min, Math.abs(arr[i] + arr[j]));
             }
 
-            while(i < j - 1 && arr[i] + arr[j] > 0) {
+            while(i < j && arr[i] + arr[j] > 0) {
                 j--;
                 min = Math.min(min, Math.abs(arr[i] + arr[j]));
             }

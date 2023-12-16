@@ -15,18 +15,22 @@ public class Main {
 
         for(int i = 1; i <= n; i++) arr[i] = sc.nextInt();
 
+        Arrays.sort(arr, 1, n + 1);
+
         int j = n;
-        int sum = 0;
+        int min = Integer.MAX_VALUE;
         for(int i = 1; i <= n; i++) {
 
-            while(j != 1 && Math.abs(arr[i] + arr[j]) > 0) {
-                set.add(Math.abs(arr[i] + arr[j]));
+            while(j != i && arr[i] + arr[j] >= 0) {
+                int sum = Math.abs(arr[i] + arr[j]);
+                //System.out.println(sum);
+                min = Math.min(min, sum);
                 j--;
             }
 
-            if(j <= i) break;
+            if(j <= i || min == 0) break;
         }
 
-        System.out.println(set.higher(0));
+        System.out.println(min);
     }
 }

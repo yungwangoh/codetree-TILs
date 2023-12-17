@@ -23,10 +23,9 @@ public class Main {
         for(int i = 1; i <= n; i++) {
             
             while(canGo(j)) {
+
                 int key = arr[j + 1];
                 map.put(key, map.getOrDefault(key, 0) + 1);
-
-                if(map.get(key) > k) break;
 
                 j++;
             }
@@ -40,6 +39,8 @@ public class Main {
     }
     static boolean canGo(int j) {
         if(j + 1 > n) return false;
+
+        if(map.getOrDefault(arr[j + 1], 0) >= k) return false;
 
         return true;
     }

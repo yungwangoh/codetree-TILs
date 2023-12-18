@@ -24,7 +24,7 @@ public class Main {
         }
 
     }
-    static int binarySearch(int n) {
+    static int binarySearch(int num) {
 
         int left = 0;
         int right = n - 1;
@@ -32,9 +32,9 @@ public class Main {
         while(left <= right) {
             int mid = (left + right) / 2;
 
-            if(arr[mid] == n) return mid + 1;
+            if(arr[mid] == num) return mid + 1;
 
-            if(arr[mid] > n) {
+            if(arr[mid] > num) {
                 right = mid - 1;
             } else {
                 left = mid + 1;

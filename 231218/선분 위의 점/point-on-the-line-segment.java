@@ -17,6 +17,8 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
+        Arrays.sort(arr, 0, n);
+
         for(int i = 0; i < m; i++) {
             int x = sc.nextInt();
             int y = sc.nextInt();
@@ -38,7 +40,6 @@ public class Main {
         int left = 0;
         int right = n - 1;
         int min = n;
-        boolean flag = false;
         while(left <= right) {
             int mid = (left + right) / 2;
 
@@ -57,7 +58,6 @@ public class Main {
         int left = 0;
         int right = n - 1;
         int max = -1;
-        boolean flag = false;
         while(left <= right) {
             int mid = (left + right) / 2;
 

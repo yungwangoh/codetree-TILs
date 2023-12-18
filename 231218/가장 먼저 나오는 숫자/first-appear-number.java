@@ -22,8 +22,7 @@ public class Main {
 
             int nn = lowerBound(num);
             
-            if(nn == n - 1) System.out.println(-1);
-            else System.out.println(nn);
+            System.out.println(nn);
         }
     }
     static int lowerBound(int num) {
@@ -32,8 +31,11 @@ public class Main {
         int right = n - 1;
         int min = n;
 
+        boolean flag = false;
         while(left <= right) {
             int mid = (left + right) / 2;
+
+            if(arr[mid] == num) flag = true;
 
             if(arr[mid] >= num) {
                 right = mid - 1;
@@ -43,6 +45,8 @@ public class Main {
             }
         }
 
-        return min + 1;
+        if(flag) {
+            return min + 1;
+        } else return -1;
     }
 }

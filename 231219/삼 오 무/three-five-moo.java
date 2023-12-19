@@ -4,23 +4,27 @@ import java.util.*;
 public class Main {
     
     static int n;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // 여기에 코드를 작성해주세요.
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        n = sc.nextInt();
+        n = Integer.parseInt(br.readLine());
 
-        int nn = paramesticSearch(n);
+        long nn = paramesticSearch(n);
 
-        System.out.println(nn);
+        bw.write(String.valueOf(nn));
+
+        bw.flush();
+        bw.close();
     }
-    static int paramesticSearch(int n) {
+    static long paramesticSearch(long n) {
     
-        int left = 1;
-        int right = 1_000_000_000;
-        int min = Integer.MAX_VALUE;
+        long left = 0L;
+        long right = Long.MAX_VALUE;
+        long min = Long.MAX_VALUE;
         while(left <= right) {
-            int mid = (left + right) / 2;
+            long mid = (left + right) / 2;
 
             if(isPossible(mid) >= n) {
                 right = mid - 1;
@@ -32,9 +36,9 @@ public class Main {
 
         return min;
     }
-    static int isPossible(int mid) {
+    static long isPossible(long mid) {
 
-        int sum = mid / 3 + mid / 5 - mid / 15;
+        long sum = mid / 3 + mid / 5 - mid / 15;
 
         return mid - sum;
     }

@@ -17,7 +17,7 @@ public class Main {
     static int paramesticSearch(int n) {
     
         int left = 1;
-        int right = Integer.MAX_VALUE;
+        int right = 1_000_000_000;
         int min = Integer.MAX_VALUE;
         while(left <= right) {
             int mid = (left + right) / 2;

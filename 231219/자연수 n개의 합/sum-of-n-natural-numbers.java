@@ -17,8 +17,8 @@ public class Main {
     }
     static long parametricSearch(long s) {
 
-        long left = 1;
-        long right = 1_000_000_000;
+        long left = 1L;
+        long right = 1_000_000_000_0L;
         long max = 0;
 
         while(left <= right) {

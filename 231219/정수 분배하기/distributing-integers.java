@@ -26,7 +26,7 @@ public class Main {
 
         int left = 1;
         int right = s;
-        int max = Integer.MIN_VALUE;
+        int max = 0;
 
         while(left <= right) {
 

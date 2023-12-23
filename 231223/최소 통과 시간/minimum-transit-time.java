@@ -5,7 +5,7 @@ public class Main {
 
     static int n, m;
     static final int MAX = 100000;
-    static final long MAX_NUM = Long.MAX_VALUE;
+    static final long MAX_NUM = 2000000000;
     static int[] arr = new int[MAX + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
@@ -27,7 +27,7 @@ public class Main {
     static long paramesticSearch() {
 
         long left = 1;
-        long right = MAX_NUM - 1;
+        long right = MAX_NUM;
         long ans = Long.MAX_VALUE;
         while(left <= right) {
 
@@ -45,7 +45,7 @@ public class Main {
     }
     static boolean isPossible(long dist) {
 
-        int cnt = 0;
+        long cnt = 0;
         for(int i = 0; i < m; i++) {
             cnt += (dist / arr[i]);
         }

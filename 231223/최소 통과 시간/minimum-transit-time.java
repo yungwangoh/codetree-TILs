@@ -27,7 +27,7 @@ public class Main {
     static long paramesticSearch() {
 
         long left = 1;
-        long right = MAX_NUM;
+        long right = MAX_NUM - 1;
         long ans = Long.MAX_VALUE;
         while(left <= right) {
 

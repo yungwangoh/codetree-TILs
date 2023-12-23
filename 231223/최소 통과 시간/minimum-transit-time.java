@@ -5,7 +5,7 @@ public class Main {
 
     static int n, m;
     static final int MAX = 100000;
-    static final int MAX_NUM = Long.MAX_VALUE;
+    static final long MAX_NUM = Long.MAX_VALUE;
     static int[] arr = new int[MAX + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.

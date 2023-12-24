@@ -5,6 +5,7 @@ public class Main {
 
     static int n, m;
     static final int MAX = 100000;
+    static int wholeSum = 0;
     static int[] arr = new int[MAX + 1];
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
@@ -15,6 +16,7 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
+            wholeSum += arr[i];
         }
 
         int nn = paramesticSearch();
@@ -24,8 +26,8 @@ public class Main {
     static int paramesticSearch() {
 
         int left = 1;
-        int right = 1440;
-        int min = 1440;
+        int right = wholeSum;
+        int min = Integer.MAX_VALUE;
         while(left <= right) {
             int mid = (left + right) / 2;
 
@@ -55,6 +57,6 @@ public class Main {
             }
         }
 
-        return cnt < m;
+        return cnt <= m - 1;
     }
 }

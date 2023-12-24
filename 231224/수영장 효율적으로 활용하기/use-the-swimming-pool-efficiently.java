@@ -25,7 +25,7 @@ public class Main {
 
         int left = 1;
         int right = 1440;
-        int min = Integer.MAX_VALUE;
+        int min = 1440;
         while(left <= right) {
             int mid = (left + right) / 2;
 

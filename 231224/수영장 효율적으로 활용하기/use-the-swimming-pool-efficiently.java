@@ -26,7 +26,7 @@ public class Main {
     static int paramesticSearch() {
 
         int left = 1;
-        int right = 1440;
+        int right = wholeSum;
         int min = Integer.MAX_VALUE;
         while(left <= right) {
             int mid = (left + right) / 2;
@@ -57,6 +57,6 @@ public class Main {
             }
         }
 
-        return cnt <= m - 1;
+        return cnt < m;
     }
 }

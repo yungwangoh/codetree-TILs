@@ -45,7 +45,7 @@ public class Main {
 
         int left = 1;
         int right = MAX_NUM;
-        int max = Integer.MIN_VALUE;
+        int max = 0;
 
         while(left <= right) {
             int mid = (left + right) / 2;
@@ -63,21 +63,17 @@ public class Main {
     static boolean isPossible(int dist) {
 
         int cnt = 0;
-        int pos = Integer.MIN_VALUE;
-        for(int i = 0; i < n; i++) {
+        int pos = plist[0].x;
+        for(int i = 1; i < n; i++) {
 
             int s = plist[i].x;
             int e = plist[i].y;
 
-            while(pos + dist <= e) {
+            if(e < pos + dist) return false;
 
-                cnt++;
-                pos = Math.max(s, pos + dist);
-
-                if(cnt >= n) break;
-            }
+            pos = Math.max(pos + dist, s);
         }
 
-        return cnt >= n;
+        return true;
     }
 }

@@ -39,7 +39,7 @@ public class Main {
             int w = sc.nextInt();
             int v = sc.nextInt();
 
-            nap[i] = new Knapsack(w, v, v / w);
+            nap[i] = new Knapsack(w, v, (double) v / w);
         }
 
         Arrays.sort(nap, 0, n);

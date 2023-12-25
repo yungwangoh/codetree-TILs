@@ -19,16 +19,18 @@ public class Main {
         int max = Integer.MIN_VALUE;
         int sum = 0;
         for(int i = 0; i < n; i++) {
+
             sum += arr[i];
 
             if(sum < 0) {
                 sum = 0;
                 continue;
-            }
+            } 
 
             max = Math.max(max, sum);
         }
 
+        if(max == Integer.MIN_VALUE) max = arr[n - 1];
         System.out.println(max);
     }
 }

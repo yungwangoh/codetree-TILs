@@ -5,7 +5,7 @@ public class Main {
 
     static int n;
     static final int MAX = 100000;
-    static int[] arr = new int[MAX + 1];
+    static Queue<Integer> pq = new PriorityQueue<>();
     public static void main(String[] args) {
         // 여기에 코드를 작성해주세요.
         Scanner sc = new Scanner(System.in);
@@ -13,29 +13,20 @@ public class Main {
         n = sc.nextInt();
 
         for(int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            pq.add(sc.nextInt());
         }
-
-        Arrays.sort(arr, 0 , n);
-
+      
         int sum = 0;
-        while(n != 1) {
+        while(true) {
 
-            for(int i = 0; i < n; i+=2) {
+            int a = pq.poll();
+            int b = pq.poll();
 
-                if(i == 0) {
-                    arr[i] = arr[i] + arr[i + 1];
-                } else {
-                    arr[i - 1] = arr[i] + arr[i + 1];
-                }
-            }
+            sum += (a + b);
 
-            n /= 2;
-            
-            for(int i = 0; i < n; i++) {
-                sum += arr[i];
-            }
+            if(pq.isEmpty()) break;
 
+            pq.add(a + b);
         }
 
         System.out.println(sum);

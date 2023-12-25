@@ -21,7 +21,10 @@ public class Main {
         for(int i = 0; i < n; i++) {
             sum += arr[i];
 
-            if(sum < 0) sum = arr[i];
+            if(sum < 0) {
+                sum = 0;
+                continue;
+            }
 
             max = Math.max(max, sum);
         }

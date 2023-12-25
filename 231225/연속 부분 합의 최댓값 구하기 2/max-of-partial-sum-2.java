@@ -16,12 +16,12 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         int sum = 0;
         for(int i = 0; i < n; i++) {
             sum += arr[i];
 
-            if(sum < 0) sum = 0;
+            if(sum < 0) sum = arr[i];
 
             max = Math.max(max, sum);
         }

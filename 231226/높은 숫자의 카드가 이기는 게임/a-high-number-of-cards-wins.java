@@ -25,9 +25,20 @@ public class Main {
             if(!check[i]) arr[c++] = i;
         }
 
-        int cnt = 0;
-        for(int i = 0; i < n; i++) {
-            if(arr[i] > brr[i]) cnt++;
+        Arrays.sort(arr, 0, n);
+        Arrays.sort(brr, 0, n);
+
+
+        int aIdx = 0, bIdx = 0, cnt = 0;
+
+        while(aIdx + 1 < n || bIdx + 1 < n) {
+
+            if(arr[aIdx] > brr[bIdx]) {
+                cnt++;
+                aIdx++; bIdx++;
+            } else if(arr[aIdx] < brr[bIdx]) {
+                aIdx++;
+            }
         }
 
         System.out.println(cnt);

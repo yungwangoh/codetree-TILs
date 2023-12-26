@@ -34,14 +34,19 @@ public class Main {
 
         Arrays.sort(plist, 0, n);
 
-        Stack<Pair> stack = new Stack();
-        
-        stack.push(plist[0]);
-        for(int i = 1; i < n; i++) {
-            if(check(stack.peek(), plist[i])) stack.push(plist[i]);
+        int lastE = -1;
+        int max = 0;
+        for(int i = 0; i < n; i++) {
+            int s = plist[i].s;
+            int e = plist[i].e;
+
+            if(lastE <= s) {
+                max++;
+                lastE = e;
+            }
         }
 
-        System.out.println(n - stack.size());
+        System.out.println(n - max);
     }
     static boolean check(Pair x1, Pair x2) {
         return x2.e <= x1.s || x1.e <= x2.s;

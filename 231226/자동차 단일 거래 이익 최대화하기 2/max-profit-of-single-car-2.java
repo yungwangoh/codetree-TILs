@@ -28,16 +28,22 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             int v = sc.nextInt();
-            arr[i] = new Pair(i + 1, v); 
+            arr[i] = new Pair(i, v); 
         }
 
         Arrays.sort(arr, 0, n);
 
         int max = 0;
-        for(int i = 1; i < n; i++) {
-            if(arr[0].n < arr[i].n) {
-                max = Math.max(max, arr[i].v - arr[0].v);
+        int j = 0;
+        int sum = 0;
+        for(int i = 0; i < n; i++) {
+
+            while(j + 1 <= n && arr[i].n <= arr[j].n) {
+                sum = arr[j].v - arr[i].v;
+                j++;
             }
+
+            max = Math.max(max, sum);
         }
 
         System.out.println(max);

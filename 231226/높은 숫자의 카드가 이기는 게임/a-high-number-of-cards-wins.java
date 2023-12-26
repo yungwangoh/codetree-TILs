@@ -31,7 +31,7 @@ public class Main {
 
         int aIdx = 0, bIdx = 0, cnt = 0;
 
-        while(aIdx + 1 < n || bIdx + 1 < n) {
+        while(aIdx + 1 <= n || bIdx + 1 <= n) {
 
             if(arr[aIdx] > brr[bIdx]) {
                 cnt++;
@@ -39,6 +39,8 @@ public class Main {
             } else if(arr[aIdx] < brr[bIdx]) {
                 aIdx++;
             }
+
+            if(aIdx == n || bIdx == n) break;
         }
 
         System.out.println(cnt);

@@ -24,6 +24,6 @@ public class Main {
             } else flag = false;
         }
 
-        System.out.println(sum);
+        System.out.println(cnt);
     }
 }

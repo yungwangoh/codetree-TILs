@@ -14,10 +14,9 @@ public class Main {
 
         int cnt = 0;
         for(int i = n - 1; i >= 0; i--) {
-            if(iStr[i] != dStr[i]) {
-                convert(iStr);
+            if(iStr[i] != dStr[i] && cnt % 2 == 0) {
                 cnt++;
-            }
+            } else if(iStr[i] == dStr[i] && cnt % 2 == 1) cnt++;
         }
 
         System.out.println(cnt);

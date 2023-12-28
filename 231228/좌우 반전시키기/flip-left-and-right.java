@@ -23,7 +23,7 @@ public class Main {
         }
 
         int cnt = 0;
-        for(int i = 1; i < n - 1; i++) {
+        for(int i = 1; i < n; i++) {
             if(check[i - 1] == false) {
                 change(i - 1, i, i + 1);
                 cnt++;

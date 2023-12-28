@@ -30,7 +30,7 @@ public class Main {
             }
         }
 
-        if(check[n - 1]) {
+        if(check()) {
             System.out.println(cnt);
         } else {
             System.out.println(-1);
@@ -40,5 +40,12 @@ public class Main {
         check[pre] = !check[pre];
         check[mid] = !check[mid];
         check[post] = !check[post];
+    }
+    static boolean check() {
+        for(int i = 0; i < n; i++) {
+            if(check[i] == false) return false;
+        }
+
+        return true;
     }
 }

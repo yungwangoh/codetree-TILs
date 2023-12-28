@@ -25,27 +25,16 @@ public class Main {
         int cnt = 0;
         for(int i = 1; i < n; i++) {
             if(check[i - 1] == false) {
-                change(i - 1, i, i + 1);
                 cnt++;
+                check[i - 1] = !check[i - 1];
+                check[i] = !check[i];
+
+                if(i + 1 < n) check[i + 1] = !check[i + 1];
             }
         }
 
-        if(check()) {
-            System.out.println(cnt);
-        } else {
-            System.out.println(-1);
-        }
-    }
-    static void change(int pre, int mid, int post) {
-        check[pre] = !check[pre];
-        check[mid] = !check[mid];
-        check[post] = !check[post];
-    }
-    static boolean check() {
-        for(int i = 0; i < n; i++) {
-            if(check[i] == false) return false;
-        }
+        if(check[n - 1] == false) cnt = -1;
 
-        return true;
+        System.out.println(cnt);
     }
 }

@@ -23,31 +23,24 @@ public class Main {
 
         int cnt = 0;
         boolean flag = false;
+        int ans = 0;
         for(int i = 0; i < n; i++) {
             if(a[i] != b[i]) {
                 
-                if(!flag) {
-                    reverse(i);
+                if(!flag || cnt >= 4) {
                     flag = true;
+                    cnt = 1;
+                    ans++;
+                } else {
                     cnt++;
                 }
+
             } else {
                 flag = false;
+                cnt = 0;
             }
         }
 
-        System.out.println(cnt);
-    }
-    static void reverse(int idx) {
-        for(int i = idx; i < idx + 4 && i < n; i++) {
-            if(a[i] == b[i]) {
-                break;
-            } else a[i] = (a[i] == 'G') ? 'H' : 'G';
-        }
-
-        // for(int j = 0; j < n; j++) {
-        //                 System.out.print(a[j] + " ");
-        //             }
-        //             System.out.println();
+        System.out.println(ans);
     }
 }

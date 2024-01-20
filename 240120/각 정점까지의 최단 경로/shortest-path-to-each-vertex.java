@@ -21,7 +21,7 @@ class Element implements Comparable<Element> {
 
     @Override
     public int compareTo(Element e) {
-        return this.dist - dist;
+        return this.dist - e.dist;
     }
 }
 public class Main {

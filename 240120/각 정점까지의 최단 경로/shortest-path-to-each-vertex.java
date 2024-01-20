@@ -64,9 +64,9 @@ public class Main {
 
             if(minDist != dist[minIndex]) continue;
 
-            for(Element e : graph[minIndex]) {
-                int targetIndex = e.index;
-                int targetDist = e.dist;
+            for(Node node : graph[minIndex]) {
+                int targetIndex = node.index;
+                int targetDist = node.dist;
 
                 int newDist = dist[minIndex] + targetDist;
 

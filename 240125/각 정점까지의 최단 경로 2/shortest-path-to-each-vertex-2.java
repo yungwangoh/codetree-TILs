@@ -26,7 +26,7 @@ public class Main {
             int y = sc.nextInt();
             int z = sc.nextInt();
 
-            if(dist[x][y] == (int)1e9) dist[x][y] = z;
+            dist[x][y] = Math.min(dist[x][y] , z);
         }
 
         for(int k = 1; k <= n; k++) {
